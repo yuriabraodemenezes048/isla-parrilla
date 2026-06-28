@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Isla Parrilla — A Verdadeira Experiência da Brasa</title>
+  <meta name="description" content="Isla Parrilla — Cortes Angus nobres grelhados na brasa com a tradição argentina. Av. Campeche, 2157 - Florianópolis. (48) 99125-6740"/>
+  <meta property="og:title" content="Isla Parrilla — A Verdadeira Experiência da Brasa"/>
+  <meta property="og:description" content="Cortes Angus nobres grelhados na brasa. Campeche, Florianópolis."/>
+  <meta property="og:type" content="restaurant"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --black:#0B0B0B;--coal:#161616;--dark:#1c1c1c;
+      --fire:#F97316;--gold:#D4AF37;--gold2:#c9a227;
+      --white:#F5F0E8;--dim:rgba(245,240,232,.6);--subtle:rgba(245,240,232,.08);
+      --border:rgba(212,175,55,.15);--border2:rgba(212,175,55,.08);
+    }
+    html{scroll-behavior:auto}
+    body{background:var(--black);color:var(--white);font-family:'Inter',sans-serif;overflow-x:hidden;cursor:none}
+    ::selection{background:var(--fire);color:var(--black)}
+
+    /* ── CURSOR ── */
+    #cur{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;mix-blend-mode:difference}
+    #cdot{width:8px;height:8px;background:var(--white);border-radius:50%;position:absolute;transform:translate(-50%,-50%);transition:width .3s,height .3s}
+    #cring{width:36px;height:36px;border:1px solid rgba(245,240,232,.5);border-radius:50%;position:absolute;transform:translate(-50%,-50%);transition:width .35s,height .35s,border-color .3s}
+    body.ch #cdot{width:12px;height:12px}
+    body.ch #cring{width:56px;height:56px;border-color:var(--gold)}
+
+    /* ── LOADER ── */
+    #loader{position:fixed;inset:0;z-index:9998;background:var(--black);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:28px}
+    #ll{font-family:'Playfair Display',serif;font-size:clamp(36px,6vw,72px);letter-spacing:.3em;opacity:0;color:var(--white)}
+    #ls{font-size:10px;letter-spacing:.55em;text-transform:uppercase;color:var(--gold);opacity:0}
+    #lbw{width:180px;height:1px;background:rgba(255,255,255,.1);overflow:hidden;opacity:0}
+    #lb{height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--fire))}
+
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 52px;display:flex;align-items:center;justify-content:space-between;transition:all .45s ease}
+    nav.sc{background:rgba(11,11,11,.94);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);padding:14px 52px;border-bottom:1px solid var(--border)}
+    .nlogo{font-family:'Playfair Display',serif;font-size:21px;letter-spacing:.22em;text-transform:uppercase;color:var(--white);text-decoration:none;cursor:none}
+    .nlogo span{color:var(--gold)}
+    .nlinks{display:flex;gap:40px;list-style:none}
+    .nlinks a{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--dim);text-decoration:none;transition:color .3s;cursor:none;position:relative}
+    .nlinks a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .3s}
+    .nlinks a:hover{color:var(--white)}.nlinks a:hover::after{transform:scaleX(1)}
+    .ncta{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:10px 26px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;cursor:none;transition:all .32s;font-family:'Inter',sans-serif}
+    .ncta:hover{background:var(--gold);color:var(--black)}
+    .hbg{display:none;flex-direction:column;gap:5px;cursor:none;padding:4px;background:none;border:none}
+    .hbg span{display:block;width:24px;height:1px;background:var(--white);transition:all .3s}
+
+    /* ── MOBILE MENU ── */
+    #mm{position:fixed;inset:0;z-index:200;background:var(--black);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:36px;opacity:0;pointer-events:none;transition:opacity .4s}
+    #mm.open{opacity:1;pointer-events:all}
+    #mm a{font-family:'Playfair Display',serif;font-size:clamp(26px,6vw,52px);color:var(--white);text-decoration:none;transition:color .3s;cursor:none}
+    #mm a:hover{color:var(--gold)}
+    #mc{position:absolute;top:22px;right:22px;background:none;border:none;color:var(--white);font-size:34px;cursor:none;line-height:1}
+
+    /* ── HERO ── */
+    #hero{position:relative;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+    #hbg{position:absolute;inset:0;background:url('./foto da parrilla.webp') center/cover no-repeat;transform:scale(1.1);will-change:transform;filter:brightness(.9)}
+    #hov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,11,.25) 0%,rgba(11,11,11,.5) 45%,rgba(11,11,11,.9) 100%)}
+    #hc{position:relative;z-index:2;text-align:center;padding:0 24px;max-width:980px}
+    .hey{font-size:11px;letter-spacing:.55em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;opacity:0;transform:translateY(16px)}
+    .htit{font-family:'Playfair Display',serif;font-size:clamp(46px,8vw,118px);line-height:.95;font-weight:400;margin-bottom:32px;overflow:hidden}
+    .htit .ln{display:block;overflow:hidden}
+    .htit .lni{display:block;transform:translateY(102%)}
+    .hsub{font-family:'Cormorant Garamond',serif;font-size:clamp(18px,2.2vw,26px);font-weight:300;font-style:italic;color:var(--dim);margin-bottom:52px;opacity:0}
+    .hbtns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;opacity:0}
+    .bp{background:var(--fire);color:var(--white);padding:15px 40px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;border:none;cursor:none;transition:all .35s;position:relative;overflow:hidden;font-family:'Inter',sans-serif}
+    .bp::before{content:'';position:absolute;inset:0;background:var(--gold);transform:translateX(-101%);transition:transform .4s cubic-bezier(.4,0,.2,1)}
+    .bp:hover::before{transform:translateX(0)}.bp span{position:relative;z-index:1}
+    .bs{background:transparent;color:var(--white);padding:15px 40px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;border:1px solid rgba(245,240,232,.35);cursor:none;transition:all .35s;font-family:'Inter',sans-serif}
+    .bs:hover{border-color:var(--white)}
+    .hscr{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;z-index:2;opacity:0}
+    .hscr span{font-size:9px;letter-spacing:.45em;text-transform:uppercase;color:var(--dim)}
+    .scln{width:1px;height:56px;background:linear-gradient(180deg,var(--gold),transparent);animation:scl 2s ease-in-out infinite}
+    @keyframes scl{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+    /* ── EMBERS ── */
+    #pts{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+    .em{position:absolute;border-radius:50%;background:radial-gradient(circle,#F97316,#D4AF37 40%,transparent 70%);animation:ri linear infinite;opacity:0}
+    @keyframes ri{0%{transform:translateY(0) translateX(0) scale(1);opacity:0}10%{opacity:.55}80%{opacity:.1}100%{transform:translateY(-100vh) translateX(var(--d)) scale(0);opacity:0}}
+
+    /* ── COMMON ── */
+    .slbl{font-size:10px;letter-spacing:.6em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:20px}
+    .stit{font-family:'Playfair Display',serif;font-size:clamp(34px,4.5vw,70px);font-weight:400;line-height:1.1}
+    .stit em{font-style:italic;color:var(--gold)}
+    .div{width:56px;height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin:30px 0}
+    .rv{opacity:0;transform:translateY(44px)}
+
+    /* ── RATING BADGE ── */
+    .rating-badge{display:inline-flex;align-items:center;gap:10px;padding:12px 20px;background:rgba(212,175,55,.08);border:1px solid var(--border);margin-top:32px}
+    .rating-stars{color:var(--gold);letter-spacing:2px;font-size:13px}
+    .rating-num{font-family:'Playfair Display',serif;font-size:20px;color:var(--gold)}
+    .rating-count{font-size:11px;color:var(--dim);letter-spacing:.1em}
+
+    /* ── ABOUT ── */
+    #about{padding:140px 0;overflow:hidden}
+    .ab-grid{display:grid;grid-template-columns:1fr 1fr;max-width:1400px;margin:0 auto}
+    .ab-imgs{position:relative;height:720px;overflow:hidden}
+    .ab-main{position:absolute;inset:0;background:url('./625048119_18140923891425337_4465906589296383997_n.webp') center 20%/cover no-repeat;transform:scale(1.08)}
+    .ab-ov{position:absolute;inset:0;background:rgba(11,11,11,.12)}
+    .ab-accent{position:absolute;bottom:0;right:-1px;width:42%;height:48%;overflow:hidden;border-left:3px solid var(--black);border-top:3px solid var(--black)}
+    .ab-accent-img{width:100%;height:100%;object-fit:cover;object-position:center top}
+    .ab-cnt{padding:80px 72px;display:flex;flex-direction:column;justify-content:center}
+    .ab-cnt p{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,1.7vw,20px);line-height:1.9;color:var(--dim);margin-bottom:22px;font-weight:300}
+    .ab-stats{display:flex;gap:44px;margin-top:44px}
+    .stn{font-family:'Playfair Display',serif;font-size:50px;line-height:1;color:var(--gold);font-weight:400}
+    .stlbl{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-top:6px}
+
+    /* ── INTERLUDE ── */
+    .ilu{position:relative;height:62vh;overflow:hidden}
+    .ilbg{position:absolute;inset:0;background-size:cover;background-position:center}
+    .ilov{position:absolute;inset:0;background:rgba(11,11,11,.68);display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;gap:22px;padding:0 24px}
+    .iltx{font-family:'Playfair Display',serif;font-size:clamp(26px,4.5vw,68px);font-weight:400;font-style:italic;max-width:820px;line-height:1.2}
+
+    /* ── ESPECIALIDADES ── */
+    #especialidades{padding:140px 0;background:var(--coal)}
+    .esp-hdr{text-align:center;margin-bottom:80px;padding:0 24px}
+    .esp-row{display:flex;gap:3px;padding:0 52px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+    .esp-row::-webkit-scrollbar{display:none}
+    .ecard{flex:0 0 360px;height:540px;position:relative;overflow:hidden;cursor:none}
+    .eimg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.06);transition:transform .85s cubic-bezier(.4,0,.2,1)}
+    .ecard:hover .eimg{transform:scale(1.0)}
+    .eov{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(11,11,11,.98) 100%)}
+    .ecnt{position:absolute;bottom:0;left:0;right:0;padding:36px 30px;transform:translateY(18px);transition:transform .5s cubic-bezier(.4,0,.2,1)}
+    .ecard:hover .ecnt{transform:translateY(0)}
+    .etag{font-size:9px;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px}
+    .enm{font-family:'Playfair Display',serif;font-size:24px;font-weight:400;line-height:1.2;margin-bottom:10px}
+    .edsc{font-size:12px;color:var(--dim);line-height:1.65;max-height:0;overflow:hidden;transition:max-height .5s,opacity .5s;opacity:0}
+    .ecard:hover .edsc{max-height:80px;opacity:1}
+    .epr{font-family:'Playfair Display',serif;font-size:22px;color:var(--gold);margin-top:14px}
+
+    /* ── CARDÁPIO ── */
+    #cardapio{padding:140px 0}
+    .mu-hdr{text-align:center;padding:0 24px;margin-bottom:56px}
+    .mu-sw{max-width:420px;margin:0 auto 48px;padding:0 24px}
+    .mu-s{width:100%;background:transparent;border:none;border-bottom:1px solid var(--border);padding:12px 0;font-size:13px;color:var(--white);font-family:'Inter',sans-serif;outline:none;letter-spacing:.06em}
+    .mu-s::placeholder{color:var(--dim);font-size:11px;letter-spacing:.2em}
+    .mu-flt{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:56px;padding:0 24px}
+    .fb{padding:9px 22px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;background:transparent;color:var(--dim);border:1px solid rgba(255,255,255,.09);cursor:none;transition:all .3s;font-family:'Inter',sans-serif}
+    .fb.on,.fb:hover{background:var(--gold);color:var(--black);border-color:var(--gold)}
+    .mcat{display:none;max-width:1200px;margin:0 auto;padding:0 52px}
+    .mcat.on{display:block}
+    .mct{font-family:'Playfair Display',serif;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:36px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+    .mitems{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:2px}
+    .mi{padding:28px;background:var(--coal);border:1px solid transparent;transition:border-color .3s;cursor:none;position:relative;overflow:hidden}
+    .mi::before{content:'';position:absolute;top:0;left:0;width:2px;height:0;background:var(--gold);transition:height .4s}
+    .mi:hover{border-color:var(--border)}.mi:hover::before{height:100%}
+    .mih{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:10px}
+    .mn{font-family:'Playfair Display',serif;font-size:17px;font-weight:500;line-height:1.3}
+    .mp{font-size:15px;color:var(--gold);font-weight:500;white-space:nowrap;flex-shrink:0;font-family:'Playfair Display',serif}
+    .md{font-size:12px;color:var(--dim);line-height:1.75}
+    .mfav{position:absolute;top:18px;right:18px;background:none;border:none;color:rgba(255,255,255,.18);cursor:none;font-size:15px;transition:all .3s;opacity:0}
+    .mi:hover .mfav{opacity:1}.mfav.fv{color:var(--fire)!important;opacity:1!important}
+    .mtag{display:inline-block;margin-top:10px;padding:2px 9px;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border:1px solid var(--border)}
+    .mnote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--dim);margin-bottom:28px;text-align:center}
+    .gbox{margin-top:56px;padding:36px;background:var(--coal);border:1px solid var(--border)}
+    .gbt{font-family:'Playfair Display',serif;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:24px}
+    .gg{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
+    .gi{display:flex;align-items:flex-start;gap:10px}
+    .gd{width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:6px}
+    .gn{font-size:12px;font-weight:500;margin-bottom:1px}
+    .gdsc{font-size:11px;color:var(--dim)}
+
+    /* ── EXPERIENCIA ── */
+    #experiencia{padding:140px 0;background:var(--coal);overflow:hidden}
+    .ex-g{max-width:1200px;margin:0 auto;padding:0 52px}
+    .ex-h{margin-bottom:72px}
+    .ex-ps{display:grid;grid-template-columns:repeat(5,1fr);gap:2px}
+    .exp{padding:44px 28px;background:var(--black);border:1px solid transparent;transition:all .4s;cursor:none;text-align:center}
+    .exp:hover{background:var(--dark);border-color:var(--border);transform:translateY(-8px)}
+    .exi{font-size:34px;margin-bottom:20px;display:block;transition:transform .4s}
+    .exp:hover .exi{transform:scale(1.18)}
+    .expt{font-family:'Playfair Display',serif;font-size:15px;margin-bottom:10px}
+    .expd{font-size:11px;color:var(--dim);line-height:1.75}
+
+    /* ── GALLERY ── */
+    #galeria{padding:140px 0}
+    .ga-h{text-align:center;padding:0 24px;margin-bottom:56px}
+    .msnry{columns:4;gap:3px;padding:0 52px}
+    .gitem{break-inside:avoid;margin-bottom:3px;overflow:hidden;cursor:none;position:relative}
+    .gitem img{width:100%;display:block;transition:transform .65s cubic-bezier(.4,0,.2,1)}
+    .gitem:hover img{transform:scale(1.06)}
+    .gov{position:absolute;inset:0;background:rgba(11,11,11,.55);opacity:0;transition:opacity .4s;display:flex;align-items:center;justify-content:center}
+    .gitem:hover .gov{opacity:1}
+    .gov span{font-size:26px;color:var(--white)}
+
+    /* ── LIGHTBOX ── */
+    #lbx{position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.96);display:none;align-items:center;justify-content:center}
+    #lbx.open{display:flex}
+    #lbx img{max-width:92vw;max-height:92vh;object-fit:contain}
+    #lbxc{position:absolute;top:22px;right:30px;background:none;border:none;color:var(--white);font-size:36px;cursor:none;line-height:1}
+
+    /* ── DEPOIMENTOS ── */
+    #depoimentos{padding:140px 0;background:var(--coal);overflow:hidden}
+    .de-h{text-align:center;padding:0 24px;margin-bottom:72px}
+    .de-tr{display:flex;gap:22px;padding:0 52px;overflow-x:auto;scrollbar-width:none}
+    .de-tr::-webkit-scrollbar{display:none}
+    .dcard{flex:0 0 370px;padding:44px 36px;background:rgba(255,255,255,.03);border:1px solid var(--border);backdrop-filter:blur(18px);position:relative}
+    .dstars{color:var(--gold);font-size:13px;letter-spacing:4px;margin-bottom:22px}
+    .dtxt{font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.75;font-weight:300;font-style:italic;color:var(--dim);margin-bottom:28px}
+    .dauth{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+    .dq{position:absolute;top:28px;right:36px;font-family:'Playfair Display',serif;font-size:76px;color:rgba(212,175,55,.1);line-height:1}
+
+    /* ── LOCATION ── */
+    #localizacao{padding:140px 0}
+    .lo-g{display:grid;grid-template-columns:1fr 1fr;max-width:1200px;margin:0 auto;padding:0 52px;gap:72px;align-items:center}
+    .lo-map{height:500px;overflow:hidden;position:relative}
+    .lo-map iframe{width:100%;height:100%;border:none;filter:grayscale(.75) invert(.85) contrast(.85);transition:filter .45s}
+    .lo-map:hover iframe{filter:grayscale(.2) invert(0)}
+    .lo-mov{position:absolute;inset:0;pointer-events:none;border:1px solid var(--border)}
+    .lo-it{display:flex;gap:18px;align-items:flex-start;padding:24px 0;border-bottom:1px solid var(--border2)}
+    .lo-it:first-child{padding-top:0}
+    .lo-ic{color:var(--gold);font-size:17px;flex-shrink:0;margin-top:2px}
+    .lo-lb{font-size:9px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+    .lo-vl{font-size:14px;line-height:1.65;color:var(--dim)}
+    .lo-cta{display:inline-flex;align-items:center;gap:12px;margin-top:36px;padding:15px 30px;border:1px solid var(--gold);color:var(--gold);font-size:11px;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;cursor:none;transition:all .35s;font-family:'Inter',sans-serif}
+    .lo-cta:hover{background:var(--gold);color:var(--black)}
+    .services-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .svc-chip{padding:4px 12px;border:1px solid var(--border);font-size:10px;letter-spacing:.1em;color:var(--dim)}
+
+    /* ── FOOTER ── */
+    footer{background:var(--coal);border-top:1px solid var(--border);padding:76px 52px 38px}
+    .fo-g{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:52px;max-width:1200px;margin:0 auto;padding-bottom:52px;border-bottom:1px solid var(--border)}
+    .fonm{font-family:'Playfair Display',serif;font-size:26px;letter-spacing:.16em;margin-bottom:14px}
+    .fonm span{color:var(--gold)}
+    .fotg{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--dim);line-height:1.65;margin-bottom:28px}
+    .fo-sc{display:flex;gap:14px}
+    .fsoc{width:38px;height:38px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--dim);text-decoration:none;font-size:11px;font-weight:600;transition:all .3s;cursor:none;font-family:'Inter',sans-serif}
+    .fsoc:hover{border-color:var(--gold);color:var(--gold)}
+    .foct{font-size:9px;letter-spacing:.44em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;display:block}
+    .fol{list-style:none}.fol li{margin-bottom:10px}
+    .fol a{font-size:12px;color:var(--dim);text-decoration:none;transition:color .3s;cursor:none}.fol a:hover{color:var(--white)}
+    .focon{font-size:12px;color:var(--dim);line-height:2.1}
+    .fo-bt{max-width:1200px;margin:0 auto;padding-top:28px;display:flex;justify-content:space-between;align-items:center;font-size:10px;color:rgba(245,240,232,.28)}
+
+    /* ── NOISE ── */
+    body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;opacity:.022;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:256px 256px}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:1100px){
+      .ab-grid{grid-template-columns:1fr}.ab-imgs{height:500px}.ab-accent{display:none}
+      .ab-cnt{padding:56px 40px}.ex-ps{grid-template-columns:repeat(3,1fr)}
+      .msnry{columns:3}.fo-g{grid-template-columns:1fr 1fr}
+      .lo-g{grid-template-columns:1fr}
+    }
+    @media(max-width:768px){
+      nav{padding:18px 22px}nav.sc{padding:13px 22px}
+      .nlinks,.ncta{display:none}.hbg{display:flex}
+      .ab-cnt{padding:44px 22px}.ab-stats{gap:24px}
+      .esp-row,.de-tr{padding:0 22px}
+      .ecard{flex:0 0 300px;height:440px}
+      .dcard{flex:0 0 300px}
+      .ex-ps{grid-template-columns:repeat(2,1fr)}
+      .msnry{columns:2;padding:0 22px}
+      footer{padding:56px 22px 30px}
+      .fo-g{grid-template-columns:1fr;gap:36px}
+      .fo-bt{flex-direction:column;gap:10px;text-align:center}
+      .mitems{grid-template-columns:1fr}.mcat{padding:0 22px}
+      .ex-g{padding:0 22px}.lo-g{padding:0 22px;gap:44px}
+      nav{padding:18px 22px}
+    }
+  </style>
+</head>
+<body>
+
+<div id="cur"><div id="cdot"></div><div id="cring"></div></div>
+<div id="pts"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div id="ll">ISLA</div>
+  <div id="ls">Parrilla · Campeche</div>
+  <div id="lbw"><div id="lb"></div></div>
+</div>
+
+<!-- MOBILE MENU -->
+<div id="mm">
+  <button id="mc">×</button>
+  <a href="#hero" onclick="closeMM()">Início</a>
+  <a href="#about" onclick="closeMM()">Nossa História</a>
+  <a href="#especialidades" onclick="closeMM()">Especialidades</a>
+  <a href="#cardapio" onclick="closeMM()">Cardápio</a>
+  <a href="#galeria" onclick="closeMM()">Galeria</a>
+  <a href="#localizacao" onclick="closeMM()">Localização</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nlogo">ISLA <span>·</span> PARRILLA</a>
+  <ul class="nlinks">
+    <li><a href="#about">Nossa História</a></li>
+    <li><a href="#especialidades">Especialidades</a></li>
+    <li><a href="#cardapio">Cardápio</a></li>
+    <li><a href="#galeria">Galeria</a></li>
+    <li><a href="#localizacao">Localização</a></li>
+  </ul>
+  <button class="ncta" onclick="go('localizacao')">Reservar Mesa</button>
+  <button class="hbg" id="hbg"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div id="hbg"></div>
+  <div id="hov"></div>
+  <div id="hc">
+    <p class="hey">— Campeche · Florianópolis —</p>
+    <h1 class="htit">
+      <span class="ln"><span class="lni">A verdadeira</span></span>
+      <span class="ln"><span class="lni" style="font-style:italic;color:var(--gold)">experiência</span></span>
+      <span class="ln"><span class="lni">da Parrilla.</span></span>
+    </h1>
+    <p class="hsub">Cortes Angus nobres. Brasa de verdade. Tradição argentina.</p>
+    <div class="hbtns">
+      <button class="bp" onclick="go('localizacao')"><span>Reservar Mesa</span></button>
+      <button class="bs" onclick="go('cardapio')">Ver Cardápio</button>
+    </div>
+  </div>
+  <div class="hscr"><span>Scroll</span><div class="scln"></div></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="ab-grid">
+    <div class="ab-imgs">
+      <div class="ab-main"></div>
+      <div class="ab-ov"></div>
+      <div class="ab-accent">
+        <img src="./624214237_18159096964373983_2466792712711587344_n.webp" alt="Interior do restaurante Isla Parrilla" class="ab-accent-img" loading="lazy"/>
+      </div>
+    </div>
+    <div class="ab-cnt">
+      <span class="slbl rv">Nossa História</span>
+      <h2 class="stit rv">A paixão que<br/><em>nasce na brasa</em></h2>
+      <div class="div rv"></div>
+      <p class="rv">A Isla Parrilla nasceu da paixão pela tradição argentina da parrilla — o ritual do fogo, do carvão, dos cortes nobres e do tempo respeitado. Aqui, no coração do Campeche em Florianópolis, cada peça é preparada com cuidado artesanal, sem pressa, sem atalhos.</p>
+      <p class="rv">Utilizamos exclusivamente cortes Angus selecionados, pão de fermentação natural artesanal e o nosso chimichurri da casa, feito com receita própria. Uma experiência que vai muito além da refeição.</p>
+      <div class="rating-badge rv">
+        <span class="rating-num">4,9</span>
+        <span class="rating-stars">★★★★★</span>
+        <span class="rating-count">639 avaliações no Google</span>
+      </div>
+      <div class="ab-stats rv">
+        <div><div class="stn">100<span style="font-size:22px;color:var(--dim)">%</span></div><div class="stlbl">Angus</div></div>
+        <div><div class="stn">+8</div><div class="stlbl">Cortes Nobres</div></div>
+        <div><div class="stn">4,9</div><div class="stlbl">no Google</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERLUDE 1 -->
+<div class="ilu">
+  <div class="ilbg" style="background-image:url('./625196907_18073760144381337_4099154142626227843_n.jpg')"></div>
+  <div class="ilov">
+    <span class="slbl" style="color:var(--gold)">— Nossa filosofia —</span>
+    <p class="iltx">"O fogo revela a essência da carne."</p>
+  </div>
+</div>
+
+<!-- ESPECIALIDADES -->
+<section id="especialidades">
+  <div class="esp-hdr">
+    <span class="slbl rv">— Cortes Nobres Angus —</span>
+    <h2 class="stit rv">Nossas <em>Especialidades</em></h2>
+  </div>
+  <div class="esp-row">
+    <div class="ecard">
+      <div class="eimg" style="background-image:url('./622459976_18081811412462550_874638000059375611_n.webp')"></div>
+      <div class="eov"></div>
+      <div class="ecnt">
+        <span class="etag">Angus · 250g</span>
+        <h3 class="enm">Picanha Angus</h3>
+        <p class="edsc">O corte mais nobre da parrilla. Macia, suculenta, com capa de gordura perfeita. Grelhada ao ponto certo na brasa de carvão.</p>
+        <p class="epr">R$ 92,90</p>
+      </div>
+    </div>
+    <div class="ecard">
+      <div class="eimg" style="background-image:url('./622404552_18101048518890504_5991417900916438194_n.webp');background-position:center 30%"></div>
+      <div class="eov"></div>
+      <div class="ecnt">
+        <span class="etag">Angus · 250g</span>
+        <h3 class="enm">Assado de Tiras Angus</h3>
+        <p class="edsc">Costela bovina Angus cortada em tiras, assada lentamente na brasa até atingir a maciez perfeita.</p>
+        <p class="epr">R$ 85,90</p>
+      </div>
+    </div>
+    <div class="ecard">
+      <div class="eimg" style="background-image:url('./627912963_18389197798150862_8821404826924790664_n.jpg');background-position:center 40%"></div>
+      <div class="eov"></div>
+      <div class="ecnt">
+        <span class="etag">Angus · 250g</span>
+        <h3 class="enm">Bife de Chorizo Angus</h3>
+        <p class="edsc">Contrafilé Angus de alta qualidade. Marmoreado generoso, sabor intenso, crocante por fora e rosado por dentro.</p>
+        <p class="epr">R$ 75,90</p>
+      </div>
+    </div>
+    <div class="ecard">
+      <div class="eimg" style="background-image:url('./620822077_18083234354247354_3488225972561862620_n.webp')"></div>
+      <div class="eov"></div>
+      <div class="ecnt">
+        <span class="etag">Angus · 250g</span>
+        <h3 class="enm">Entrecot Angus</h3>
+        <p class="edsc">Filé de costela Angus de textura única. Gordura entremeada natural que resulta num sabor inigualável.</p>
+        <p class="epr">R$ 75,90</p>
+      </div>
+    </div>
+    <div class="ecard">
+      <div class="eimg" style="background-image:url('./628057607_18422444083139137_6121260044205526982_n.webp')"></div>
+      <div class="eov"></div>
+      <div class="ecnt">
+        <span class="etag">Angus · 250g</span>
+        <h3 class="enm">Entraña Angus</h3>
+        <p class="edsc">O corte favorito dos argentinos. Fraldinha Angus de sabor marcante, textura macia e preparo rápido na parrilla.</p>
+        <p class="epr">R$ 82,90</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARDÁPIO -->
+<section id="cardapio">
+  <div class="mu-hdr">
+    <span class="slbl rv">— Menu Completo —</span>
+    <h2 class="stit rv">Almoço <em>na Brasa</em></h2>
+  </div>
+  <div class="mu-sw">
+    <input type="search" id="ms" class="mu-s" placeholder="BUSCAR NO CARDÁPIO..." oninput="searchMenu(this.value)"/>
+  </div>
+  <div class="mu-flt">
+    <button class="fb on" onclick="fMenu('ei',this)">Entradas</button>
+    <button class="fb" onclick="fMenu('ec',this)">Para Compartilhar</button>
+    <button class="fb" onclick="fMenu('pr',this)">Principais</button>
+    <button class="fb" onclick="fMenu('so',this)">Sobremesas</button>
+    <button class="fb" onclick="fMenu('be',this)">Bebidas</button>
+  </div>
+
+  <div class="mcat on" id="c-ei">
+    <p class="mct">Entradas Individuais</p>
+    <div class="mitems">
+      <div class="mi rv" data-s="choripan chorizo linguica pernil"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Choripan Chorizo</h3><span class="mp">R$ 23</span></div><p class="md">Pão de fermentação natural, linguiça de pernil suíno e molho chimichurri artesanal da casa.</p></div>
+      <div class="mi rv" data-s="choripan picante calabresa"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Choripan Picante</h3><span class="mp">R$ 24</span></div><p class="md">Pão de fermentação natural, linguiça calabresa e molho chimichurri artesanal da casa.</p><span class="mtag">🌶 Picante</span></div>
+      <div class="mi rv" data-s="choripan hongo cogumelo shitake gorgonzola"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Choripan Hongo</h3><span class="mp">R$ 23</span></div><p class="md">Pão de fermentação natural, cogumelos shitake grelhados e molho gorgonzola artesanal.</p></div>
+      <div class="mi rv" data-s="choripan calabacin abobrinha vegano"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Choripan Calabacín</h3><span class="mp">R$ 19</span></div><p class="md">Pão de fermentação natural, abobrinha italiana grelhada e molho chimichurri artesanal da casa.</p><span class="mtag">🌱 Vegano</span></div>
+      <div class="mi rv" data-s="pao fermentacao natural artesanal"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Pão de Fermentação Natural</h3><span class="mp">R$ 8</span></div><p class="md">Porção de 80g. Pão artesanal de fermentação natural, assado na brasa.</p></div>
+    </div>
+  </div>
+
+  <div class="mcat" id="c-ec">
+    <p class="mct">Entradas para Compartilhar</p>
+    <div class="mitems">
+      <div class="mi rv" data-s="linguica parrillera suina artesanal"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Linguiça Parrillera</h3><span class="mp">R$ 37</span></div><p class="md">Linguiça fina suína artesanal (180g). Acompanha porção de pão de fermentação natural.</p></div>
+      <div class="mi rv" data-s="parrillera especial provolone geleia tomate"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Parrillera Especial</h3><span class="mp">R$ 47</span></div><p class="md">Linguiça fina suína artesanal (180g) com queijo provolone defumado e geleia de tomate com pimenta agridoce. Acompanha pão.</p><span class="mtag">⭐ Destaque</span></div>
+      <div class="mi rv" data-s="provoleta provolone defumado oregano brasa"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Provoleta</h3><span class="mp">R$ 36</span></div><p class="md">Queijo provolone defumado assado na brasa (120g), temperado com orégano. Acompanha pão de fermentação natural.</p></div>
+      <div class="mi rv" data-s="hongos cogumelo shitake gorgonzola vegetariano"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Hongos com Queso</h3><span class="mp">R$ 37</span></div><p class="md">Cogumelos shitake (130g) frescos grelhados na brasa, com molho gorgonzola artesanal da casa.</p><span class="mtag">🌱 Vegetariano</span></div>
+      <div class="mi rv" data-s="iscas entrecot angus file costela tiras"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Iscas de Entrecot Angus</h3><span class="mp">R$ 69</span></div><p class="md">Medalhão de 250g de filé de costela Angus servido em tirinhas, acompanhado de pão de fermentação natural.</p><span class="mtag">🥩 Angus</span></div>
+      <div class="mi rv" data-s="iscas bife chorizo angus contrafile tiras"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Iscas de Bife de Chorizo Angus</h3><span class="mp">R$ 69</span></div><p class="md">Medalhão de 250g de contrafilé Angus servido em tirinhas, acompanhado de pão de fermentação natural.</p><span class="mtag">🥩 Angus</span></div>
+    </div>
+  </div>
+
+  <div class="mcat" id="c-pr">
+    <p class="mct">Principais — 1 Corte + 2 Guarnições</p>
+    <p class="mnote">O valor da refeição é de acordo com o corte escolhido. *exceto feriados</p>
+    <div class="mitems">
+      <div class="mi rv" data-s="assado tiras angus costela"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Assado de Tiras Angus 250g</h3><span class="mp">R$ 85,90</span></div><p class="md">Costela bovina Angus cortada em tiras, assada lentamente na brasa. Inclui 2 guarnições à escolha.</p><span class="mtag">🥩 Angus</span></div>
+      <div class="mi rv" data-s="bife chorizo angus contrafile"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Bife de Chorizo Angus 250g</h3><span class="mp">R$ 75,90</span></div><p class="md">Contrafilé Angus grelhado na brasa. Inclui 2 guarnições à escolha.</p><span class="mtag">🥩 Angus</span></div>
+      <div class="mi rv" data-s="entrana angus fraldinha argentina favorito"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Entraña Angus 250g</h3><span class="mp">R$ 82,90</span></div><p class="md">Fraldinha Angus — o corte favorito da Argentina — grelhada na parrilla. Inclui 2 guarnições.</p><span class="mtag">🥩 Angus · ⭐ Favorito</span></div>
+      <div class="mi rv" data-s="entrecot angus file costela marmoreado"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Entrecot Angus 250g</h3><span class="mp">R$ 75,90</span></div><p class="md">Filé de costela Angus com gordura entremeada natural. Inclui 2 guarnições à escolha.</p><span class="mtag">🥩 Angus</span></div>
+      <div class="mi rv" data-s="linguica parrillera suina artesanal brasa"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Linguiça Parrillera 180g</h3><span class="mp">R$ 52,90</span></div><p class="md">Linguiça fina suína artesanal grelhada na brasa. Inclui 2 guarnições à escolha.</p></div>
+      <div class="mi rv" data-s="picanha angus premium nobre gordura"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Picanha Angus 250g</h3><span class="mp">R$ 92,90</span></div><p class="md">O corte mais nobre da casa. Picanha Angus com capa de gordura perfeita, grelhada na brasa. Inclui 2 guarnições.</p><span class="mtag">👑 Premium</span></div>
+      <div class="mi rv" data-s="sobrecoxa frango desossada marinada"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Sobrecoxa de Frango 250g</h3><span class="mp">R$ 52,90</span></div><p class="md">Sobrecoxa de frango desossada, marinada e grelhada na brasa. Inclui 2 guarnições à escolha.</p></div>
+      <div class="mi rv" data-s="cogumelos shitake vegetariano veggie brasa"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Cogumelos Shitake 130g</h3><span class="mp">R$ 52,90</span></div><p class="md">Cogumelos shitake frescos grelhados na brasa. Inclui 2 guarnições à escolha.</p><span class="mtag">🌱 Veggie</span></div>
+    </div>
+    <div class="gbox">
+      <p class="gbt">Guarnições — Escolha 2 Opções</p>
+      <div class="gg">
+        <div class="gi"><span class="gd"></span><div><div class="gn">Papas Fritas 100g</div><div class="gdsc">Batatas fritas</div></div></div>
+        <div class="gi"><span class="gd"></span><div><div class="gn">Mix Vegetais 200g</div><div class="gdsc">Cenoura, brócolis e milho</div></div></div>
+        <div class="gi"><span class="gd"></span><div><div class="gn">Ensalada Mista</div><div class="gdsc">Alface, tomate e cebola</div></div></div>
+        <div class="gi"><span class="gd"></span><div><div class="gn">Morrones con Queso</div><div class="gdsc">Pimentão colorido na brasa</div></div></div>
+        <div class="gi"><span class="gd"></span><div><div class="gn">Papas con Queso 150g</div><div class="gdsc">Batatas assadas com molho gorgonzola</div></div></div>
+        <div class="gi"><span class="gd"></span><div><div class="gn">Calabacín</div><div class="gdsc">Abobrinha grelhada com chimichurri</div></div></div>
+        <div class="gi"><span class="gd"></span><div><div class="gn">Cebolla Morada</div><div class="gdsc">Cebola roxa grelhada</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mcat" id="c-so">
+    <p class="mct">Sobremesas</p>
+    <div class="mitems">
+      <div class="mi rv" data-s="flan dulce leche pudim doce leite uruguaio"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Flan con Dulce de Leche</h3><span class="mp">R$ 23</span></div><p class="md">Mini pudim de leite condensado, acompanhado de uma porção de doce de leite uruguaio.</p><span class="mtag">🍮 Clássico</span></div>
+      <div class="mi rv" data-s="banana parrilla brasa doce leite canela"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Banana a la Parrilla</h3><span class="mp">R$ 17</span></div><p class="md">Banana assada na brasa, acompanhada de doce de leite uruguaio e finalizado com um toque de canela.</p></div>
+      <div class="mi rv" data-s="alfajor chocolate merengue suico artesanal"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Alfajor Sano</h3><span class="mp">R$ 14</span></div><p class="md">Sabor chocolate ou merengue suíço. Feito artesanalmente com ingredientes selecionados.</p></div>
+    </div>
+  </div>
+
+  <div class="mcat" id="c-be">
+    <p class="mct">Bebidas</p>
+    <div class="mitems">
+      <div class="mi rv" data-s="agua gas mineral 500ml"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Água com Gás / Sem Gás 500ml</h3><span class="mp">R$ 5</span></div><p class="md">Água mineral 500ml, com ou sem gás.</p></div>
+      <div class="mi rv" data-s="refrigerante lata gelado"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Refrigerante Lata</h3><span class="mp">R$ 8</span></div><p class="md">Refrigerante em lata gelado.</p></div>
+      <div class="mi rv" data-s="suco integral fruta natural"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Suco Integral</h3><span class="mp">R$ 13</span></div><p class="md">Suco de fruta integral natural.</p></div>
+      <div class="mi rv" data-s="cerveja long neck gelada"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Cerveja Long Neck</h3><span class="mp">R$ 15</span></div><p class="md">Cerveja long neck bem gelada.</p></div>
+      <div class="mi rv" data-s="cerveja lata 473ml"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Cerveja Lata 473ml</h3><span class="mp">R$ 18</span></div><p class="md">Cerveja lata 473ml bem gelada.</p></div>
+      <div class="mi rv" data-s="vinho taca malbec cabernet sauvignon blanc"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Vinho em Taça</h3><span class="mp">R$ 25</span></div><p class="md">Malbec, Cabernet Sauvignon ou Sauvignon Blanc. Selecionados para harmonizar com a parrilla.</p><span class="mtag">🍷 Harmonização</span></div>
+      <div class="mi rv" data-s="xeque mate erva gelado 355ml"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Xeque Mate 355ml</h3><span class="mp">R$ 25</span></div><p class="md">Bebida de erva-mate gelada, 355ml.</p></div>
+      <div class="mi rv" data-s="drink gin tonica hervas aromaticas"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Drink Gin Tônica</h3><span class="mp">R$ 28</span></div><p class="md">Drink refrescante de gin com tônica e ervas aromáticas.</p></div>
+      <div class="mi rv" data-s="drink fernet cola argentina classico"><button class="mfav" onclick="fav(this)">♡</button><div class="mih"><h3 class="mn">Drink Fernet Cola</h3><span class="mp">R$ 30</span></div><p class="md">O drink clássico argentino. Fernet Branca com cola bem gelada.</p><span class="mtag">🇦🇷 Clássico Argentino</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERLUDE 2 -->
+<div class="ilu">
+  <div class="ilbg" style="background-image:url('./619412489_18311708764264420_7086822429890497657_n.jpg');background-position:center 30%"></div>
+  <div class="ilov">
+    <span class="slbl" style="color:var(--gold)">— Nossa promessa —</span>
+    <p class="iltx">"Cada corte, uma obra de arte na brasa."</p>
+    <button class="bp" style="margin-top:8px" onclick="go('cardapio')"><span>Ver Cardápio Completo</span></button>
+  </div>
+</div>
+
+<!-- EXPERIÊNCIA -->
+<section id="experiencia">
+  <div class="ex-g">
+    <div class="ex-h">
+      <span class="slbl rv">— O que nos define —</span>
+      <h2 class="stit rv">A <em>Experiência</em><br/>Isla Parrilla</h2>
+    </div>
+    <div class="ex-ps">
+      <div class="exp rv"><span class="exi">🔥</span><h3 class="expt">Brasa de Verdade</h3><p class="expd">Carvão selecionado. O calor perfeito que transforma o corte em arte.</p></div>
+      <div class="exp rv"><span class="exi">🥩</span><h3 class="expt">Cortes Angus</h3><p class="expd">100% Angus certificado. Marmoreado perfeito, maciez e sabor incomparáveis.</p></div>
+      <div class="exp rv"><span class="exi">🥖</span><h3 class="expt">Pão Artesanal</h3><p class="expd">Pão de fermentação natural feito diariamente. Base perfeita para o choripan.</p></div>
+      <div class="exp rv"><span class="exi">🧄</span><h3 class="expt">Chimichurri da Casa</h3><p class="expd">Receita própria com ervas frescas, alho e especiarias. Transforma cada bite.</p></div>
+      <div class="exp rv"><span class="exi">👨‍🍳</span><h3 class="expt">Preparo Artesanal</h3><p class="expd">Cada corte tratado com cuidado individual. Sem pressa, sem atalhos.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section id="galeria">
+  <div class="ga-h">
+    <span class="slbl rv">— Momentos na mesa —</span>
+    <h2 class="stit rv">Nossa <em>Galeria</em></h2>
+  </div>
+  <div class="msnry">
+    <div class="gitem" onclick="openLB(this)"><img src="./625237102_18190396015352231_1366551529467995196_n.webp" alt="Garçom servindo pratos na Isla Parrilla" loading="lazy"/><div class="gov"><span>+</span></div></div>
+    <div class="gitem" onclick="openLB(this)"><img src="./623363217_18128748946522457_8314979202544129601_n.webp" alt="Linguiça parrillera na tábua" loading="lazy"/><div class="gov"><span>+</span></div></div>
+    <div class="gitem" onclick="openLB(this)"><img src="./623306938_18072393749425935_6172586329113670836_n.webp" alt="Mesa com prato e cerveja Patricia" loading="lazy"/><div class="gov"><span>+</span></div></div>
+    <div class="gitem" onclick="openLB(this)"><img src="./621568802_18094742743940906_2923069846432133020_n.webp" alt="Provoleta assada na brasa" loading="lazy"/><div class="gov"><span>+</span></div></div>
+    <div class="gitem" onclick="openLB(this)"><img src="./618685656_18045665750505592_9118647784955186969_n.webp" alt="Choripan sendo segurado" loading="lazy"/><div class="gov"><span>+</span></div></div>
+    <div class="gitem" onclick="openLB(this)"><img src="./628282592_18385030918156905_286984248131342000_n.webp" alt="Mão aplicando chimichurri na linguiça" loading="lazy"/><div class="gov"><span>+</span></div></div>
+    <div class="gitem" onclick="openLB(this)"><img src="./622616075_18105040825762909_5719537962245207622_n.webp" alt="Tábua completa com linguiça e bife" loading="lazy"/><div class="gov"><span>+</span></div></div>
+    <div class="gitem" onclick="openLB(this)"><img src="./625309028_18051703655676597_7709912284649095396_n.webp" alt="Mesa posta com flores" loading="lazy"/><div class="gov"><span>+</span></div></div>
+    <div class="gitem" onclick="openLB(this)"><img src="./629638407_18311871268255192_5816290946313003550_n.webp" alt="Vista aérea linguiça e choripan" loading="lazy"/><div class="gov"><span>+</span></div></div>
+    <div class="gitem" onclick="openLB(this)"><img src="./624844148_18076616240362292_2746144443121873358_n.webp" alt="Choripan com bandeirinha Isla" loading="lazy"/><div class="gov"><span>+</span></div></div>
+    <div class="gitem" onclick="openLB(this)"><img src="./621439431_18104625034742676_1300265294463694011_n.webp" alt="Banana a la Parrilla" loading="lazy"/><div class="gov"><span>+</span></div></div>
+    <div class="gitem" onclick="openLB(this)"><img src="./486546378_18276190915264420_4491854439242210461_n.jpg" alt="Morrones con Queso grelhados" loading="lazy"/><div class="gov"><span>+</span></div></div>
+    <div class="gitem" onclick="openLB(this)"><img src="./651756445_18039240512552734_5522718834813415301_n.webp" alt="Mesa com pratos e guardanapos" loading="lazy"/><div class="gov"><span>+</span></div></div>
+    <div class="gitem" onclick="openLB(this)"><img src="./486724612_18276191056264420_1456871924032622789_n.jpg" alt="Cortes na grelha com brasas" loading="lazy"/><div class="gov"><span>+</span></div></div>
+    <div class="gitem" onclick="openLB(this)"><img src="./504219405_720355537047332_1369030571892027789_n.jpg" alt="Bife sendo cortado" loading="lazy"/><div class="gov"><span>+</span></div></div>
+    <div class="gitem" onclick="openLB(this)"><img src="./529858240_18291264826264420_5285779803479373116_n.jpg" alt="Parrillera Especial" loading="lazy"/><div class="gov"><span>+</span></div></div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lbx" onclick="closeLB()"><img id="lbi" src="" alt="Foto ampliada"/><button id="lbxc">×</button></div>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos">
+  <div class="de-h">
+    <span class="slbl rv">— O que dizem nossos clientes —</span>
+    <h2 class="stit rv">Experiências <em>Reais</em></h2>
+    <div style="margin-top:16px;opacity:.6;font-size:12px;letter-spacing:.15em;color:var(--dim)">4,9 ★★★★★ · 639 avaliações no Google</div>
+  </div>
+  <div class="de-tr">
+    <div class="dcard rv"><div class="dq">"</div><div class="dstars">★★★★★</div><p class="dtxt">A melhor parrilla que já provei fora da Argentina. O assado de tiras é simplesmente perfeito. Voltarei com certeza.</p><p class="dauth">— Carlos M., São Paulo</p></div>
+    <div class="dcard rv"><div class="dq">"</div><div class="dstars">★★★★★</div><p class="dtxt">O ambiente, o atendimento, a carne. Tudo impecável. A picanha Angus derreteu na boca. Que experiência incrível.</p><p class="dauth">— Ana Paula L., Florianópolis</p></div>
+    <div class="dcard rv"><div class="dq">"</div><div class="dstars">★★★★★</div><p class="dtxt">Fui com minha namorada no aniversário dela e ela simplesmente amou. O Flan con Dulce de Leche é memorável.</p><p class="dauth">— Rafael T., Google Review</p></div>
+    <div class="dcard rv"><div class="dq">"</div><div class="dstars">★★★★★</div><p class="dtxt">Sou vegetariana e me senti completamente acolhida. Os hongos com queso e os vegetais grelhados são obras de arte.</p><p class="dauth">— Mariana S., Instagram</p></div>
+  </div>
+</section>
+
+<!-- LOCALIZAÇÃO -->
+<section id="localizacao">
+  <div class="lo-g">
+    <div>
+      <span class="slbl rv">— Nos encontre —</span>
+      <h2 class="stit rv">Venha nos <em>visitar</em></h2>
+      <div class="div rv"></div>
+      <div class="lo-it rv">
+        <span class="lo-ic">📍</span>
+        <div>
+          <div class="lo-lb">Endereço</div>
+          <div class="lo-vl">Av. Campeche, 2157<br/>Campeche, Florianópolis – SC<br/>CEP 88063-300</div>
+        </div>
+      </div>
+      <div class="lo-it rv">
+        <span class="lo-ic">🕐</span>
+        <div>
+          <div class="lo-lb">Horário de Funcionamento</div>
+          <div class="lo-vl">Terça a Domingo<br/>Almoço: 12h00 às 15h30<br/>Jantar: 18h30 às 22h30</div>
+        </div>
+      </div>
+      <div class="lo-it rv">
+        <span class="lo-ic">📞</span>
+        <div>
+          <div class="lo-lb">Telefone / WhatsApp</div>
+          <div class="lo-vl">(48) 99125-6740<br/>Reservas recomendadas</div>
+          <div class="services-row">
+            <span class="svc-chip">✓ Refeição no local</span>
+            <span class="svc-chip">✓ Para viagem</span>
+            <span class="svc-chip">✓ Entrega sem contato</span>
+          </div>
+        </div>
+      </div>
+      <div class="lo-it rv">
+        <span class="lo-ic">📸</span>
+        <div>
+          <div class="lo-lb">Instagram</div>
+          <div class="lo-vl">@islaparrilla</div>
+        </div>
+      </div>
+      <a href="https://wa.me/5548991256740" class="lo-cta rv" target="_blank" rel="noopener noreferrer">💬 Reservar via WhatsApp</a>
+    </div>
+    <div class="lo-map">
+      <iframe
+        src="https://maps.google.com/maps?q=Av.+Campeche,+2157,+Campeche,+Florian%C3%B3polis,+SC,+88063-300&t=&z=16&ie=UTF8&iwloc=&output=embed"
+        allowfullscreen=""
+        loading="lazy"
+        title="Localização Isla Parrilla — Av. Campeche, 2157, Florianópolis"
+      ></iframe>
+      <div class="lo-mov"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fo-g">
+    <div>
+      <div class="fonm">ISLA <span>·</span> PARRILLA</div>
+      <p class="fotg">A verdadeira experiência da brasa argentina. Cortes Angus nobres, chimichurri artesanal e muito calor humano. No coração do Campeche, Florianópolis.</p>
+      <div class="fo-sc">
+        <a href="https://www.instagram.com/islaparrilla" class="fsoc" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+        <a href="https://wa.me/5548991256740" class="fsoc" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
+        <a href="tel:+5548991256740" class="fsoc" aria-label="Telefone">☎</a>
+      </div>
+    </div>
+    <div>
+      <span class="foct">Menu</span>
+      <ul class="fol">
+        <li><a href="#cardapio" onclick="fMenu('ei',null)">Entradas Individuais</a></li>
+        <li><a href="#cardapio" onclick="fMenu('ec',null)">Para Compartilhar</a></li>
+        <li><a href="#cardapio" onclick="fMenu('pr',null)">Principais</a></li>
+        <li><a href="#cardapio" onclick="fMenu('so',null)">Sobremesas</a></li>
+        <li><a href="#cardapio" onclick="fMenu('be',null)">Bebidas</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="foct">Navegação</span>
+      <ul class="fol">
+        <li><a href="#about">Nossa História</a></li>
+        <li><a href="#especialidades">Especialidades</a></li>
+        <li><a href="#galeria">Galeria</a></li>
+        <li><a href="#depoimentos">Depoimentos</a></li>
+        <li><a href="#localizacao">Localização</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="foct">Contato</span>
+      <div class="focon">
+        <p>📍 Av. Campeche, 2157</p>
+        <p>Campeche · Florianópolis</p>
+        <br/>
+        <p>📞 (48) 99125-6740</p>
+        <p>📸 @islaparrilla</p>
+        <br/>
+        <p>Ter–Dom · 12h00–15h30</p>
+        <p>Jantar: 18h30–22h30</p>
+      </div>
+    </div>
+  </div>
+  <div class="fo-bt">
+    <span>© 2025 Isla Parrilla · Campeche, Florianópolis — SC</span>
+    <span>Feito com 🔥 e paixão pela brasa argentina</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script>
+// CURSOR
+const dot=document.getElementById('cdot'),ring=document.getElementById('cring');
+let cx=0,cy=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{cx=e.clientX;cy=e.clientY;dot.style.left=cx+'px';dot.style.top=cy+'px';});
+(function ar(){rx+=(cx-rx)*.12;ry+=(cy-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(ar);})();
+document.querySelectorAll('a,button,.mi,.ecard,.gitem,.dcard,.exp').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('ch'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('ch'));
+});
+
+// EMBERS
+const pc=document.getElementById('pts');
+setInterval(()=>{
+  const e=document.createElement('div');e.className='em';
+  const sz=Math.random()*3+1;
+  e.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;bottom:${Math.random()*15}%;--d:${(Math.random()-.5)*110}px;animation-duration:${4+Math.random()*7}s;animation-delay:${Math.random()*2}s;`;
+  pc.appendChild(e);setTimeout(()=>e.remove(),12000);
+},380);
+
+// LOADER
+let prog=0;
+gsap.to('#ll',{opacity:1,duration:.9,delay:.2});
+gsap.to('#ls',{opacity:1,duration:.8,delay:.55});
+gsap.to('#lbw',{opacity:1,duration:.5,delay:.75});
+const li=setInterval(()=>{
+  prog+=Math.random()*14;if(prog>100)prog=100;
+  document.getElementById('lb').style.width=prog+'%';
+  if(prog>=100){clearInterval(li);setTimeout(hideLdr,400);}
+},80);
+function hideLdr(){
+  gsap.to('#loader',{opacity:0,duration:.85,ease:'power2.inOut',onComplete:()=>{
+    document.getElementById('loader').style.display='none';init();
+  }});
+}
+
+// LENIS + GSAP
+let lenis;
+function init(){
+  gsap.registerPlugin(ScrollTrigger);
+  lenis=new Lenis({duration:1.45,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)),smoothWheel:true});
+  lenis.on('scroll',ScrollTrigger.update);
+  gsap.ticker.add(t=>lenis.raf(t*1000));
+  gsap.ticker.lagSmoothing(0);
+
+  // HERO
+  const tl=gsap.timeline({delay:.25});
+  tl.to('.hey',{opacity:1,y:0,duration:.85,ease:'power3.out'})
+    .to('.htit .lni',{y:'0%',duration:1.25,ease:'power4.out',stagger:.14},'-=.45')
+    .to('.hsub',{opacity:1,duration:.8,ease:'power2.out'},'-=.35')
+    .to('.hbtns',{opacity:1,duration:.6},'-=.2')
+    .to('.hscr',{opacity:1,duration:.5},'-=.15');
+
+  // HERO PARALLAX
+  gsap.to('#hbg',{yPercent:30,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:1.6}});
+
+  // ABOUT IMG PARALLAX
+  gsap.to('.ab-main',{yPercent:14,ease:'none',scrollTrigger:{trigger:'#about',start:'top bottom',end:'bottom top',scrub:1.5}});
+
+  // INTERLUDE PARALLAX
+  document.querySelectorAll('.ilbg').forEach(bg=>{
+    gsap.to(bg,{yPercent:20,ease:'none',scrollTrigger:{trigger:bg.closest('.ilu'),start:'top bottom',end:'bottom top',scrub:1.5}});
+  });
+
+  // REVEALS
+  document.querySelectorAll('.rv').forEach((el,i)=>{
+    gsap.fromTo(el,{opacity:0,y:46},{opacity:1,y:0,duration:.95,ease:'power3.out',
+      delay:(i%4)*.07,
+      scrollTrigger:{trigger:el,start:'top 90%',toggleActions:'play none none none'}
+    });
+  });
+
+  // ESPECIALIDADES STAGGER
+  gsap.fromTo('.ecard',{opacity:0,y:56},{opacity:1,y:0,duration:.85,ease:'power3.out',stagger:.11,
+    scrollTrigger:{trigger:'#especialidades',start:'top 76%'}
+  });
+
+  // DEPO STAGGER
+  gsap.fromTo('.dcard',{opacity:0,x:36},{opacity:1,x:0,duration:.75,ease:'power3.out',stagger:.14,
+    scrollTrigger:{trigger:'#depoimentos',start:'top 76%'}
+  });
+
+  // EXP PILLARS STAGGER
+  gsap.fromTo('.exp',{opacity:0,y:38},{opacity:1,y:0,duration:.75,ease:'power3.out',stagger:.1,
+    scrollTrigger:{trigger:'#experiencia',start:'top 76%'}
+  });
+
+  // GALLERY STAGGER
+  gsap.fromTo('.gitem',{opacity:0,scale:.96},{opacity:1,scale:1,duration:.65,ease:'power2.out',stagger:.05,
+    scrollTrigger:{trigger:'#galeria',start:'top 80%'}
+  });
+}
+
+// NAV SCROLL
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('sc',scrollY>55),{passive:true});
+
+// MOBILE MENU
+document.getElementById('hbg').onclick=()=>{document.getElementById('mm').classList.add('open');document.body.style.overflow='hidden';};
+document.getElementById('mc').onclick=closeMM;
+function closeMM(){document.getElementById('mm').classList.remove('open');document.body.style.overflow='';}
+
+// FILTER
+function fMenu(cat,btn){
+  document.querySelectorAll('.mcat').forEach(c=>c.classList.remove('on'));
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));
+  const el=document.getElementById('c-'+cat);if(el)el.classList.add('on');
+  if(btn)btn.classList.add('on');
+  setTimeout(()=>document.getElementById('cardapio').scrollIntoView({behavior:'smooth',block:'start'}),50);
+}
+
+// SEARCH
+function searchMenu(v){
+  const q=v.toLowerCase().trim();
+  if(!q){
+    document.querySelectorAll('.mcat').forEach(c=>{c.classList.remove('on');c.style.display='';});
+    document.getElementById('c-ei').classList.add('on');
+    document.querySelectorAll('.mi').forEach(i=>i.style.display='');
+    document.querySelector('.fb').classList.add('on');
+    return;
+  }
+  document.querySelectorAll('.mcat').forEach(c=>{c.classList.add('on');c.style.display='block';});
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.mi').forEach(item=>{
+    const s=(item.dataset.s||'')+' '+item.textContent.toLowerCase();
+    item.style.display=s.includes(q)?'':'none';
+  });
+}
+
+// LIGHTBOX
+function openLB(el){
+  const img=el.querySelector('img');
+  document.getElementById('lbi').src=img.src;
+  document.getElementById('lbx').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLB(){document.getElementById('lbx').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLB();});
+
+// FAV
+function fav(btn){
+  const f=btn.textContent==='♡';btn.textContent=f?'♥':'♡';btn.classList.toggle('fv',f);
+}
+
+// SCROLL HELPER
+function go(id){const el=document.getElementById(id);if(!el)return;lenis?lenis.scrollTo(el,{offset:-80}):el.scrollIntoView({behavior:'smooth'});}
+
+// NAV LINKS
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();lenis?lenis.scrollTo(t,{offset:-80}):t.scrollIntoView({behavior:'smooth'});}
+  });
+});
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Restaurant",
+  "name":"Isla Parrilla",
+  "description":"Restaurante especializado em Parrilla Argentina com cortes Angus nobres grelhados na brasa. Campeche, Florianópolis.",
+  "address":{"@type":"PostalAddress","streetAddress":"Av. Campeche, 2157","addressLocality":"Florianópolis","addressRegion":"SC","postalCode":"88063-300","addressCountry":"BR"},
+  "telephone":"+5548991256740",
+  "servesCuisine":["Argentine","Steakhouse","Parrilla"],
+  "priceRange":"R$ 60–140",
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"639"},
+  "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"12:00","closes":"22:30"}]
+}
+</script>
+</body>
+</html>
