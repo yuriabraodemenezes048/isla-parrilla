@@ -70,8 +70,8 @@
     #lb{height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--fire))}
 
     /* ── NAV ── */
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 52px;display:flex;align-items:center;justify-content:space-between;transition:all .45s ease}
-    nav.sc{background:rgba(11,11,11,.94);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);padding:14px 52px;border-bottom:1px solid var(--border)}
+    nav#nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 52px;display:flex;align-items:center;justify-content:space-between;transition:all .45s ease}
+    nav#nav.sc{background:rgba(11,11,11,.94);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);padding:14px 52px;border-bottom:1px solid var(--border)}
     .nlogo{font-family:'Playfair Display',serif;font-size:21px;letter-spacing:.22em;text-transform:uppercase;color:var(--white);text-decoration:none;cursor:pointer}
     .nlogo span{color:var(--gold)}
     .nlinks{display:flex;gap:40px;list-style:none}
@@ -282,7 +282,7 @@
       .lo-g{grid-template-columns:1fr}
     }
     @media(max-width:768px){
-      nav{padding:18px 22px}nav.sc{padding:13px 22px}
+      nav#nav{padding:18px 22px}nav#nav.sc{padding:13px 22px}
       .nlinks,.ncta{display:none}.hbg{display:flex}
       .ab-cnt{padding:44px 22px}.ab-stats{gap:24px}
       .esp-row,.de-tr{padding:0 22px}
@@ -295,7 +295,6 @@
       .fo-bt{flex-direction:column;gap:10px;text-align:center}
       .mitems{grid-template-columns:1fr}.mcat{padding:0 22px}
       .ex-g{padding:0 22px}.lo-g{padding:0 22px;gap:44px}
-      nav{padding:18px 22px}
       .rsv-g{grid-template-columns:1fr !important}
     }
 
