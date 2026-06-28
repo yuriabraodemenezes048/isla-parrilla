@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Block legal pages from indexing (they're noindex via meta tag too)
+Disallow: /privacidade
+Disallow: /cookies
+Disallow: /termos
+
+Sitemap: https://isla-parrilla.vercel.app/sitemap.xml
