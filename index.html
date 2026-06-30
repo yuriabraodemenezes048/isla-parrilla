@@ -11,13 +11,15 @@
   <meta name="geo.placename" content="Florianópolis"/>
   <meta name="geo.position" content="-27.6757;-48.4936"/>
   <link rel="canonical" href="https://isla-parrilla.vercel.app/"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>"/>
+  <meta name="theme-color" content="#0B0B0B"/>
 
   <!-- Open Graph -->
   <meta property="og:title" content="Isla Parrilla — A Verdadeira Experiência da Brasa"/>
   <meta property="og:description" content="Cortes Angus nobres grelhados na brasa com tradição argentina. Av. Campeche, 2157, Florianópolis SC."/>
   <meta property="og:type" content="restaurant"/>
   <meta property="og:url" content="https://isla-parrilla.vercel.app/"/>
-  <meta property="og:image" content="https://isla-parrilla.vercel.app/foto da parrilla.webp"/>
+  <meta property="og:image" content="https://isla-parrilla.vercel.app/foto%20da%20parrilla.webp"/>
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
   <meta property="og:locale" content="pt_BR"/>
@@ -27,7 +29,7 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="Isla Parrilla — A Verdadeira Experiência da Brasa"/>
   <meta name="twitter:description" content="Cortes Angus nobres grelhados na brasa. Campeche, Florianópolis."/>
-  <meta name="twitter:image" content="https://isla-parrilla.vercel.app/foto da parrilla.webp"/>
+  <meta name="twitter:image" content="https://isla-parrilla.vercel.app/foto%20da%20parrilla.webp"/>
 
   <!-- Google Consent Mode v2 — default denied until user accepts -->
   <script>
@@ -214,7 +216,7 @@
     #galeria{padding:140px 0}
     .ga-h{text-align:center;padding:0 24px;margin-bottom:56px}
     .msnry{columns:4;gap:3px;padding:0 52px}
-    .gitem{break-inside:avoid;margin-bottom:3px;overflow:hidden;cursor:pointer;position:relative}
+    .gitem{break-inside:avoid;margin-bottom:3px;overflow:hidden;cursor:pointer;position:relative;border:none;background:none;padding:0;display:block;width:100%;text-align:left}
     .gitem img{width:100%;display:block;transition:transform .65s cubic-bezier(.4,0,.2,1)}
     .gitem:hover img{transform:scale(1.06)}
     .gov{position:absolute;inset:0;background:rgba(11,11,11,.55);opacity:0;transition:opacity .4s;display:flex;align-items:center;justify-content:center}
@@ -372,8 +374,8 @@
     <span id="ck-desc"> — para melhorar sua experiência, analisar o tráfego e personalizar conteúdo. Ao clicar em <strong>Aceitar</strong>, você concorda com nossa <a href="/cookies">Política de Cookies</a> e <a href="/privacidade">Política de Privacidade</a>.</span>
   </p>
   <div class="ck-bt">
-    <button class="ck-ac" onclick="acceptCookies()">Aceitar cookies</button>
-    <button class="ck-rj" onclick="rejectCookies()">Somente essenciais</button>
+    <button type="button" class="ck-ac" onclick="acceptCookies()">Aceitar cookies</button>
+    <button type="button" class="ck-rj" onclick="rejectCookies()">Somente essenciais</button>
   </div>
 </div>
 
@@ -386,7 +388,7 @@
 
 <!-- MOBILE MENU -->
 <div id="mm" role="dialog" aria-modal="true" aria-label="Menu de navegação">
-  <button id="mc" aria-label="Fechar menu">×</button>
+  <button type="button" id="mc" aria-label="Fechar menu">×</button>
   <a href="#hero" onclick="closeMM()">Início</a>
   <a href="#about" onclick="closeMM()">Nossa História</a>
   <a href="#especialidades" onclick="closeMM()">Especialidades</a>
@@ -406,8 +408,8 @@
     <li><a href="#galeria">Galeria</a></li>
     <li><a href="#localizacao">Localização</a></li>
   </ul>
-  <button class="ncta" onclick="go('reservas')">Reservar Mesa</button>
-  <button class="hbg" id="hamburger" aria-expanded="false" aria-controls="mm" aria-label="Abrir menu de navegação"><span></span><span></span><span></span></button>
+  <button type="button" class="ncta" onclick="go('reservas')">Reservar Mesa</button>
+  <button type="button" class="hbg" id="hamburger" aria-expanded="false" aria-controls="mm" aria-label="Abrir menu de navegação"><span></span><span></span><span></span></button>
 </nav>
 </header>
 
@@ -426,8 +428,8 @@
     </h1>
     <p class="hsub">Cortes Angus nobres. Brasa de verdade. Tradição argentina.</p>
     <div class="hbtns">
-      <button class="bp" onclick="go('reservas')"><span>Reservar Mesa</span></button>
-      <button class="bs" onclick="go('cardapio')">Ver Cardápio</button>
+      <button type="button" class="bp" onclick="go('reservas')"><span>Reservar Mesa</span></button>
+      <button type="button" class="bs" onclick="go('cardapio')">Ver Cardápio</button>
     </div>
   </div>
   <div class="hscr" aria-hidden="true"><span>Scroll</span><div class="scln"></div></div>
@@ -544,33 +546,33 @@
     <div role="status" aria-live="polite" id="search-status" class="sr-only"></div>
   </div>
   <div class="mu-flt" role="tablist" aria-label="Categorias do cardápio">
-    <button class="fb on" role="tab" aria-selected="true" aria-controls="c-ei" id="tab-ei" onclick="fMenu('ei',this)">Entradas</button>
-    <button class="fb" role="tab" aria-selected="false" aria-controls="c-ec" id="tab-ec" onclick="fMenu('ec',this)">Para Compartilhar</button>
-    <button class="fb" role="tab" aria-selected="false" aria-controls="c-pr" id="tab-pr" onclick="fMenu('pr',this)">Principais</button>
-    <button class="fb" role="tab" aria-selected="false" aria-controls="c-so" id="tab-so" onclick="fMenu('so',this)">Sobremesas</button>
-    <button class="fb" role="tab" aria-selected="false" aria-controls="c-be" id="tab-be" onclick="fMenu('be',this)">Bebidas</button>
+    <button type="button" class="fb on" role="tab" aria-selected="true" aria-controls="c-ei" id="tab-ei" onclick="fMenu('ei',this)">Entradas</button>
+    <button type="button" class="fb" role="tab" aria-selected="false" aria-controls="c-ec" id="tab-ec" onclick="fMenu('ec',this)">Para Compartilhar</button>
+    <button type="button" class="fb" role="tab" aria-selected="false" aria-controls="c-pr" id="tab-pr" onclick="fMenu('pr',this)">Principais</button>
+    <button type="button" class="fb" role="tab" aria-selected="false" aria-controls="c-so" id="tab-so" onclick="fMenu('so',this)">Sobremesas</button>
+    <button type="button" class="fb" role="tab" aria-selected="false" aria-controls="c-be" id="tab-be" onclick="fMenu('be',this)">Bebidas</button>
   </div>
 
   <div class="mcat on" id="c-ei" role="tabpanel" aria-labelledby="tab-ei">
     <h3 class="mct">Entradas Individuais</h3>
     <div class="mitems">
-      <div class="mi rv" data-s="choripan chorizo linguica pernil"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Choripan Chorizo aos favoritos">♡</button><div class="mih"><h4 class="mn">Choripan Chorizo</h4><span class="mp">R$ 23</span></div><p class="md">Pão de fermentação natural, linguiça de pernil suíno e molho chimichurri artesanal da casa.</p></div>
-      <div class="mi rv" data-s="choripan picante calabresa"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Choripan Picante aos favoritos">♡</button><div class="mih"><h4 class="mn">Choripan Picante</h4><span class="mp">R$ 24</span></div><p class="md">Pão de fermentação natural, linguiça calabresa e molho chimichurri artesanal da casa.</p><span class="mtag"><span aria-hidden="true">🌶</span> Picante</span></div>
-      <div class="mi rv" data-s="choripan hongo cogumelo shitake gorgonzola"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Choripan Hongo aos favoritos">♡</button><div class="mih"><h4 class="mn">Choripan Hongo</h4><span class="mp">R$ 23</span></div><p class="md">Pão de fermentação natural, cogumelos shitake grelhados e molho gorgonzola artesanal.</p></div>
-      <div class="mi rv" data-s="choripan calabacin abobrinha vegano"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Choripan Calabacín aos favoritos">♡</button><div class="mih"><h4 class="mn">Choripan Calabacín</h4><span class="mp">R$ 19</span></div><p class="md">Pão de fermentação natural, abobrinha italiana grelhada e molho chimichurri artesanal da casa.</p><span class="mtag"><span aria-hidden="true">🌱</span> Vegano</span></div>
-      <div class="mi rv" data-s="pao fermentacao natural artesanal"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Pão de Fermentação Natural aos favoritos">♡</button><div class="mih"><h4 class="mn">Pão de Fermentação Natural</h4><span class="mp">R$ 8</span></div><p class="md">Porção de 80g. Pão artesanal de fermentação natural, assado na brasa.</p></div>
+      <div class="mi rv" data-s="choripan chorizo linguica pernil"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Choripan Chorizo aos favoritos">♡</button><div class="mih"><h4 class="mn">Choripan Chorizo</h4><span class="mp">R$ 23</span></div><p class="md">Pão de fermentação natural, linguiça de pernil suíno e molho chimichurri artesanal da casa.</p></div>
+      <div class="mi rv" data-s="choripan picante calabresa"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Choripan Picante aos favoritos">♡</button><div class="mih"><h4 class="mn">Choripan Picante</h4><span class="mp">R$ 24</span></div><p class="md">Pão de fermentação natural, linguiça calabresa e molho chimichurri artesanal da casa.</p><span class="mtag"><span aria-hidden="true">🌶</span> Picante</span></div>
+      <div class="mi rv" data-s="choripan hongo cogumelo shitake gorgonzola"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Choripan Hongo aos favoritos">♡</button><div class="mih"><h4 class="mn">Choripan Hongo</h4><span class="mp">R$ 23</span></div><p class="md">Pão de fermentação natural, cogumelos shitake grelhados e molho gorgonzola artesanal.</p></div>
+      <div class="mi rv" data-s="choripan calabacin abobrinha vegano"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Choripan Calabacín aos favoritos">♡</button><div class="mih"><h4 class="mn">Choripan Calabacín</h4><span class="mp">R$ 19</span></div><p class="md">Pão de fermentação natural, abobrinha italiana grelhada e molho chimichurri artesanal da casa.</p><span class="mtag"><span aria-hidden="true">🌱</span> Vegano</span></div>
+      <div class="mi rv" data-s="pao fermentacao natural artesanal"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Pão de Fermentação Natural aos favoritos">♡</button><div class="mih"><h4 class="mn">Pão de Fermentação Natural</h4><span class="mp">R$ 8</span></div><p class="md">Porção de 80g. Pão artesanal de fermentação natural, assado na brasa.</p></div>
     </div>
   </div>
 
   <div class="mcat" id="c-ec" role="tabpanel" aria-labelledby="tab-ec">
     <h3 class="mct">Entradas para Compartilhar</h3>
     <div class="mitems">
-      <div class="mi rv" data-s="linguica parrillera suina artesanal"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Linguiça Parrillera aos favoritos">♡</button><div class="mih"><h4 class="mn">Linguiça Parrillera</h4><span class="mp">R$ 37</span></div><p class="md">Linguiça fina suína artesanal (180g). Acompanha porção de pão de fermentação natural.</p></div>
-      <div class="mi rv" data-s="parrillera especial provolone geleia tomate"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Parrillera Especial aos favoritos">♡</button><div class="mih"><h4 class="mn">Parrillera Especial</h4><span class="mp">R$ 47</span></div><p class="md">Linguiça fina suína artesanal (180g) com queijo provolone defumado e geleia de tomate com pimenta agridoce. Acompanha pão.</p><span class="mtag"><span aria-hidden="true">⭐</span> Destaque</span></div>
-      <div class="mi rv" data-s="provoleta provolone defumado oregano brasa"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Provoleta aos favoritos">♡</button><div class="mih"><h4 class="mn">Provoleta</h4><span class="mp">R$ 36</span></div><p class="md">Queijo provolone defumado assado na brasa (120g), temperado com orégano. Acompanha pão de fermentação natural.</p></div>
-      <div class="mi rv" data-s="hongos cogumelo shitake gorgonzola vegetariano"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Hongos com Queso aos favoritos">♡</button><div class="mih"><h4 class="mn">Hongos com Queso</h4><span class="mp">R$ 37</span></div><p class="md">Cogumelos shitake (130g) frescos grelhados na brasa, com molho gorgonzola artesanal da casa.</p><span class="mtag"><span aria-hidden="true">🌱</span> Vegetariano</span></div>
-      <div class="mi rv" data-s="iscas entrecot angus file costela tiras"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Iscas de Entrecot Angus aos favoritos">♡</button><div class="mih"><h4 class="mn">Iscas de Entrecot Angus</h4><span class="mp">R$ 69</span></div><p class="md">Medalhão de 250g de filé de costela Angus servido em tirinhas, acompanhado de pão de fermentação natural.</p><span class="mtag"><span aria-hidden="true">🥩</span> Angus</span></div>
-      <div class="mi rv" data-s="iscas bife chorizo angus contrafile tiras"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Iscas de Bife de Chorizo Angus aos favoritos">♡</button><div class="mih"><h4 class="mn">Iscas de Bife de Chorizo Angus</h4><span class="mp">R$ 69</span></div><p class="md">Medalhão de 250g de contrafilé Angus servido em tirinhas, acompanhado de pão de fermentação natural.</p><span class="mtag"><span aria-hidden="true">🥩</span> Angus</span></div>
+      <div class="mi rv" data-s="linguica parrillera suina artesanal"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Linguiça Parrillera aos favoritos">♡</button><div class="mih"><h4 class="mn">Linguiça Parrillera</h4><span class="mp">R$ 37</span></div><p class="md">Linguiça fina suína artesanal (180g). Acompanha porção de pão de fermentação natural.</p></div>
+      <div class="mi rv" data-s="parrillera especial provolone geleia tomate"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Parrillera Especial aos favoritos">♡</button><div class="mih"><h4 class="mn">Parrillera Especial</h4><span class="mp">R$ 47</span></div><p class="md">Linguiça fina suína artesanal (180g) com queijo provolone defumado e geleia de tomate com pimenta agridoce. Acompanha pão.</p><span class="mtag"><span aria-hidden="true">⭐</span> Destaque</span></div>
+      <div class="mi rv" data-s="provoleta provolone defumado oregano brasa"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Provoleta aos favoritos">♡</button><div class="mih"><h4 class="mn">Provoleta</h4><span class="mp">R$ 36</span></div><p class="md">Queijo provolone defumado assado na brasa (120g), temperado com orégano. Acompanha pão de fermentação natural.</p></div>
+      <div class="mi rv" data-s="hongos cogumelo shitake gorgonzola vegetariano"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Hongos com Queso aos favoritos">♡</button><div class="mih"><h4 class="mn">Hongos com Queso</h4><span class="mp">R$ 37</span></div><p class="md">Cogumelos shitake (130g) frescos grelhados na brasa, com molho gorgonzola artesanal da casa.</p><span class="mtag"><span aria-hidden="true">🌱</span> Vegetariano</span></div>
+      <div class="mi rv" data-s="iscas entrecot angus file costela tiras"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Iscas de Entrecot Angus aos favoritos">♡</button><div class="mih"><h4 class="mn">Iscas de Entrecot Angus</h4><span class="mp">R$ 69</span></div><p class="md">Medalhão de 250g de filé de costela Angus servido em tirinhas, acompanhado de pão de fermentação natural.</p><span class="mtag"><span aria-hidden="true">🥩</span> Angus</span></div>
+      <div class="mi rv" data-s="iscas bife chorizo angus contrafile tiras"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Iscas de Bife de Chorizo Angus aos favoritos">♡</button><div class="mih"><h4 class="mn">Iscas de Bife de Chorizo Angus</h4><span class="mp">R$ 69</span></div><p class="md">Medalhão de 250g de contrafilé Angus servido em tirinhas, acompanhado de pão de fermentação natural.</p><span class="mtag"><span aria-hidden="true">🥩</span> Angus</span></div>
     </div>
   </div>
 
@@ -578,14 +580,14 @@
     <h3 class="mct">Principais — 1 Corte + 2 Guarnições</h3>
     <p class="mnote">O valor da refeição é de acordo com o corte escolhido. *exceto feriados</p>
     <div class="mitems">
-      <div class="mi rv" data-s="assado tiras angus costela"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Assado de Tiras Angus aos favoritos">♡</button><div class="mih"><h4 class="mn">Assado de Tiras Angus 250g</h4><span class="mp">R$ 85,90</span></div><p class="md">Costela bovina Angus cortada em tiras, assada lentamente na brasa. Inclui 2 guarnições à escolha.</p><span class="mtag"><span aria-hidden="true">🥩</span> Angus</span></div>
-      <div class="mi rv" data-s="bife chorizo angus contrafile"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Bife de Chorizo Angus aos favoritos">♡</button><div class="mih"><h4 class="mn">Bife de Chorizo Angus 250g</h4><span class="mp">R$ 75,90</span></div><p class="md">Contrafilé Angus grelhado na brasa. Inclui 2 guarnições à escolha.</p><span class="mtag"><span aria-hidden="true">🥩</span> Angus</span></div>
-      <div class="mi rv" data-s="entrana angus fraldinha argentina favorito"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Entraña Angus aos favoritos">♡</button><div class="mih"><h4 class="mn">Entraña Angus 250g</h4><span class="mp">R$ 82,90</span></div><p class="md">Fraldinha Angus — o corte favorito da Argentina — grelhada na parrilla. Inclui 2 guarnições.</p><span class="mtag"><span aria-hidden="true">🥩</span> Angus · <span aria-hidden="true">⭐</span> Favorito</span></div>
-      <div class="mi rv" data-s="entrecot angus file costela marmoreado"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Entrecot Angus aos favoritos">♡</button><div class="mih"><h4 class="mn">Entrecot Angus 250g</h4><span class="mp">R$ 75,90</span></div><p class="md">Filé de costela Angus com gordura entremeada natural. Inclui 2 guarnições à escolha.</p><span class="mtag"><span aria-hidden="true">🥩</span> Angus</span></div>
-      <div class="mi rv" data-s="linguica parrillera suina artesanal brasa"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Linguiça Parrillera aos favoritos">♡</button><div class="mih"><h4 class="mn">Linguiça Parrillera 180g</h4><span class="mp">R$ 52,90</span></div><p class="md">Linguiça fina suína artesanal grelhada na brasa. Inclui 2 guarnições à escolha.</p></div>
-      <div class="mi rv" data-s="picanha angus premium nobre gordura"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Picanha Angus aos favoritos">♡</button><div class="mih"><h4 class="mn">Picanha Angus 250g</h4><span class="mp">R$ 92,90</span></div><p class="md">O corte mais nobre da casa. Picanha Angus com capa de gordura perfeita, grelhada na brasa. Inclui 2 guarnições.</p><span class="mtag"><span aria-hidden="true">👑</span> Premium</span></div>
-      <div class="mi rv" data-s="sobrecoxa frango desossada marinada"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Sobrecoxa de Frango aos favoritos">♡</button><div class="mih"><h4 class="mn">Sobrecoxa de Frango 250g</h4><span class="mp">R$ 52,90</span></div><p class="md">Sobrecoxa de frango desossada, marinada e grelhada na brasa. Inclui 2 guarnições à escolha.</p></div>
-      <div class="mi rv" data-s="cogumelos shitake vegetariano veggie brasa"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Cogumelos Shitake aos favoritos">♡</button><div class="mih"><h4 class="mn">Cogumelos Shitake 130g</h4><span class="mp">R$ 52,90</span></div><p class="md">Cogumelos shitake frescos grelhados na brasa. Inclui 2 guarnições à escolha.</p><span class="mtag"><span aria-hidden="true">🌱</span> Veggie</span></div>
+      <div class="mi rv" data-s="assado tiras angus costela"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Assado de Tiras Angus aos favoritos">♡</button><div class="mih"><h4 class="mn">Assado de Tiras Angus 250g</h4><span class="mp">R$ 85,90</span></div><p class="md">Costela bovina Angus cortada em tiras, assada lentamente na brasa. Inclui 2 guarnições à escolha.</p><span class="mtag"><span aria-hidden="true">🥩</span> Angus</span></div>
+      <div class="mi rv" data-s="bife chorizo angus contrafile"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Bife de Chorizo Angus aos favoritos">♡</button><div class="mih"><h4 class="mn">Bife de Chorizo Angus 250g</h4><span class="mp">R$ 75,90</span></div><p class="md">Contrafilé Angus grelhado na brasa. Inclui 2 guarnições à escolha.</p><span class="mtag"><span aria-hidden="true">🥩</span> Angus</span></div>
+      <div class="mi rv" data-s="entrana angus fraldinha argentina favorito"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Entraña Angus aos favoritos">♡</button><div class="mih"><h4 class="mn">Entraña Angus 250g</h4><span class="mp">R$ 82,90</span></div><p class="md">Fraldinha Angus — o corte favorito da Argentina — grelhada na parrilla. Inclui 2 guarnições.</p><span class="mtag"><span aria-hidden="true">🥩</span> Angus · <span aria-hidden="true">⭐</span> Favorito</span></div>
+      <div class="mi rv" data-s="entrecot angus file costela marmoreado"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Entrecot Angus aos favoritos">♡</button><div class="mih"><h4 class="mn">Entrecot Angus 250g</h4><span class="mp">R$ 75,90</span></div><p class="md">Filé de costela Angus com gordura entremeada natural. Inclui 2 guarnições à escolha.</p><span class="mtag"><span aria-hidden="true">🥩</span> Angus</span></div>
+      <div class="mi rv" data-s="linguica parrillera suina artesanal brasa"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Linguiça Parrillera aos favoritos">♡</button><div class="mih"><h4 class="mn">Linguiça Parrillera 180g</h4><span class="mp">R$ 52,90</span></div><p class="md">Linguiça fina suína artesanal grelhada na brasa. Inclui 2 guarnições à escolha.</p></div>
+      <div class="mi rv" data-s="picanha angus premium nobre gordura"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Picanha Angus aos favoritos">♡</button><div class="mih"><h4 class="mn">Picanha Angus 250g</h4><span class="mp">R$ 92,90</span></div><p class="md">O corte mais nobre da casa. Picanha Angus com capa de gordura perfeita, grelhada na brasa. Inclui 2 guarnições.</p><span class="mtag"><span aria-hidden="true">👑</span> Premium</span></div>
+      <div class="mi rv" data-s="sobrecoxa frango desossada marinada"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Sobrecoxa de Frango aos favoritos">♡</button><div class="mih"><h4 class="mn">Sobrecoxa de Frango 250g</h4><span class="mp">R$ 52,90</span></div><p class="md">Sobrecoxa de frango desossada, marinada e grelhada na brasa. Inclui 2 guarnições à escolha.</p></div>
+      <div class="mi rv" data-s="cogumelos shitake vegetariano veggie brasa"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Cogumelos Shitake aos favoritos">♡</button><div class="mih"><h4 class="mn">Cogumelos Shitake 130g</h4><span class="mp">R$ 52,90</span></div><p class="md">Cogumelos shitake frescos grelhados na brasa. Inclui 2 guarnições à escolha.</p><span class="mtag"><span aria-hidden="true">🌱</span> Veggie</span></div>
     </div>
     <div class="gbox">
       <p class="gbt">Guarnições — Escolha 2 Opções</p>
@@ -604,24 +606,24 @@
   <div class="mcat" id="c-so" role="tabpanel" aria-labelledby="tab-so">
     <h3 class="mct">Sobremesas</h3>
     <div class="mitems">
-      <div class="mi rv" data-s="flan dulce leche pudim doce leite uruguaio"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Flan con Dulce de Leche aos favoritos">♡</button><div class="mih"><h4 class="mn">Flan con Dulce de Leche</h4><span class="mp">R$ 23</span></div><p class="md">Mini pudim de leite condensado, acompanhado de uma porção de doce de leite uruguaio.</p><span class="mtag"><span aria-hidden="true">🍮</span> Clássico</span></div>
-      <div class="mi rv" data-s="banana parrilla brasa doce leite canela"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Banana a la Parrilla aos favoritos">♡</button><div class="mih"><h4 class="mn">Banana a la Parrilla</h4><span class="mp">R$ 17</span></div><p class="md">Banana assada na brasa, acompanhada de doce de leite uruguaio e finalizado com um toque de canela.</p></div>
-      <div class="mi rv" data-s="alfajor chocolate merengue suico artesanal"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Alfajor Sano aos favoritos">♡</button><div class="mih"><h4 class="mn">Alfajor Sano</h4><span class="mp">R$ 14</span></div><p class="md">Sabor chocolate ou merengue suíço. Feito artesanalmente com ingredientes selecionados.</p></div>
+      <div class="mi rv" data-s="flan dulce leche pudim doce leite uruguaio"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Flan con Dulce de Leche aos favoritos">♡</button><div class="mih"><h4 class="mn">Flan con Dulce de Leche</h4><span class="mp">R$ 23</span></div><p class="md">Mini pudim de leite condensado, acompanhado de uma porção de doce de leite uruguaio.</p><span class="mtag"><span aria-hidden="true">🍮</span> Clássico</span></div>
+      <div class="mi rv" data-s="banana parrilla brasa doce leite canela"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Banana a la Parrilla aos favoritos">♡</button><div class="mih"><h4 class="mn">Banana a la Parrilla</h4><span class="mp">R$ 17</span></div><p class="md">Banana assada na brasa, acompanhada de doce de leite uruguaio e finalizado com um toque de canela.</p></div>
+      <div class="mi rv" data-s="alfajor chocolate merengue suico artesanal"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Alfajor Sano aos favoritos">♡</button><div class="mih"><h4 class="mn">Alfajor Sano</h4><span class="mp">R$ 14</span></div><p class="md">Sabor chocolate ou merengue suíço. Feito artesanalmente com ingredientes selecionados.</p></div>
     </div>
   </div>
 
   <div class="mcat" id="c-be" role="tabpanel" aria-labelledby="tab-be">
     <h3 class="mct">Bebidas</h3>
     <div class="mitems">
-      <div class="mi rv" data-s="agua gas mineral 500ml"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Água com Gás / Sem Gás aos favoritos">♡</button><div class="mih"><h4 class="mn">Água com Gás / Sem Gás 500ml</h4><span class="mp">R$ 5</span></div><p class="md">Água mineral 500ml, com ou sem gás.</p></div>
-      <div class="mi rv" data-s="refrigerante lata gelado"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Refrigerante Lata aos favoritos">♡</button><div class="mih"><h4 class="mn">Refrigerante Lata</h4><span class="mp">R$ 8</span></div><p class="md">Refrigerante em lata gelado.</p></div>
-      <div class="mi rv" data-s="suco integral fruta natural"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Suco Integral aos favoritos">♡</button><div class="mih"><h4 class="mn">Suco Integral</h4><span class="mp">R$ 13</span></div><p class="md">Suco de fruta integral natural.</p></div>
-      <div class="mi rv" data-s="cerveja long neck gelada"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Cerveja Long Neck aos favoritos">♡</button><div class="mih"><h4 class="mn">Cerveja Long Neck</h4><span class="mp">R$ 15</span></div><p class="md">Cerveja long neck bem gelada.</p></div>
-      <div class="mi rv" data-s="cerveja lata 473ml"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Cerveja Lata 473ml aos favoritos">♡</button><div class="mih"><h4 class="mn">Cerveja Lata 473ml</h4><span class="mp">R$ 18</span></div><p class="md">Cerveja lata 473ml bem gelada.</p></div>
-      <div class="mi rv" data-s="vinho taca malbec cabernet sauvignon blanc"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Vinho em Taça aos favoritos">♡</button><div class="mih"><h4 class="mn">Vinho em Taça</h4><span class="mp">R$ 25</span></div><p class="md">Malbec, Cabernet Sauvignon ou Sauvignon Blanc. Selecionados para harmonizar com a parrilla.</p><span class="mtag"><span aria-hidden="true">🍷</span> Harmonização</span></div>
-      <div class="mi rv" data-s="xeque mate erva gelado 355ml"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Xeque Mate aos favoritos">♡</button><div class="mih"><h4 class="mn">Xeque Mate 355ml</h4><span class="mp">R$ 25</span></div><p class="md">Bebida de erva-mate gelada, 355ml.</p></div>
-      <div class="mi rv" data-s="drink gin tonica hervas aromaticas"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Drink Gin Tônica aos favoritos">♡</button><div class="mih"><h4 class="mn">Drink Gin Tônica</h4><span class="mp">R$ 28</span></div><p class="md">Drink refrescante de gin com tônica e ervas aromáticas.</p></div>
-      <div class="mi rv" data-s="drink fernet cola argentina classico"><button class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Drink Fernet Cola aos favoritos">♡</button><div class="mih"><h4 class="mn">Drink Fernet Cola</h4><span class="mp">R$ 30</span></div><p class="md">O drink clássico argentino. Fernet Branca com cola bem gelada.</p><span class="mtag"><span aria-hidden="true">🇦🇷</span> Clássico Argentino</span></div>
+      <div class="mi rv" data-s="agua gas mineral 500ml"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Água com Gás / Sem Gás aos favoritos">♡</button><div class="mih"><h4 class="mn">Água com Gás / Sem Gás 500ml</h4><span class="mp">R$ 5</span></div><p class="md">Água mineral 500ml, com ou sem gás.</p></div>
+      <div class="mi rv" data-s="refrigerante lata gelado"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Refrigerante Lata aos favoritos">♡</button><div class="mih"><h4 class="mn">Refrigerante Lata</h4><span class="mp">R$ 8</span></div><p class="md">Refrigerante em lata gelado.</p></div>
+      <div class="mi rv" data-s="suco integral fruta natural"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Suco Integral aos favoritos">♡</button><div class="mih"><h4 class="mn">Suco Integral</h4><span class="mp">R$ 13</span></div><p class="md">Suco de fruta integral natural.</p></div>
+      <div class="mi rv" data-s="cerveja long neck gelada"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Cerveja Long Neck aos favoritos">♡</button><div class="mih"><h4 class="mn">Cerveja Long Neck</h4><span class="mp">R$ 15</span></div><p class="md">Cerveja long neck bem gelada.</p></div>
+      <div class="mi rv" data-s="cerveja lata 473ml"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Cerveja Lata 473ml aos favoritos">♡</button><div class="mih"><h4 class="mn">Cerveja Lata 473ml</h4><span class="mp">R$ 18</span></div><p class="md">Cerveja lata 473ml bem gelada.</p></div>
+      <div class="mi rv" data-s="vinho taca malbec cabernet sauvignon blanc"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Vinho em Taça aos favoritos">♡</button><div class="mih"><h4 class="mn">Vinho em Taça</h4><span class="mp">R$ 25</span></div><p class="md">Malbec, Cabernet Sauvignon ou Sauvignon Blanc. Selecionados para harmonizar com a parrilla.</p><span class="mtag"><span aria-hidden="true">🍷</span> Harmonização</span></div>
+      <div class="mi rv" data-s="xeque mate erva gelado 355ml"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Xeque Mate aos favoritos">♡</button><div class="mih"><h4 class="mn">Xeque Mate 355ml</h4><span class="mp">R$ 25</span></div><p class="md">Bebida de erva-mate gelada, 355ml.</p></div>
+      <div class="mi rv" data-s="drink gin tonica hervas aromaticas"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Drink Gin Tônica aos favoritos">♡</button><div class="mih"><h4 class="mn">Drink Gin Tônica</h4><span class="mp">R$ 28</span></div><p class="md">Drink refrescante de gin com tônica e ervas aromáticas.</p></div>
+      <div class="mi rv" data-s="drink fernet cola argentina classico"><button type="button" class="mfav" onclick="fav(this)" aria-pressed="false" aria-label="Adicionar Drink Fernet Cola aos favoritos">♡</button><div class="mih"><h4 class="mn">Drink Fernet Cola</h4><span class="mp">R$ 30</span></div><p class="md">O drink clássico argentino. Fernet Branca com cola bem gelada.</p><span class="mtag"><span aria-hidden="true">🇦🇷</span> Clássico Argentino</span></div>
     </div>
   </div>
 </section>
@@ -632,7 +634,7 @@
   <div class="ilov">
     <span class="slbl" style="color:var(--gold)">— Nossa promessa —</span>
     <p class="iltx">"Cada corte, uma obra de arte na brasa."</p>
-    <button class="bp" style="margin-top:8px" onclick="go('cardapio')"><span>Ver Cardápio Completo</span></button>
+    <button type="button" class="bp" style="margin-top:8px" onclick="go('cardapio')"><span>Ver Cardápio Completo</span></button>
   </div>
 </div>
 
@@ -660,29 +662,29 @@
     <h2 id="galeria-title" class="stit rv">Nossa <em>Galeria</em></h2>
   </div>
   <div class="msnry">
-    <button class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Garçom servindo pratos na Isla Parrilla"><img src="./625237102_18190396015352231_1366551529467995196_n.webp" alt="Garçom servindo pratos na Isla Parrilla" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
-    <button class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Linguiça parrillera na tábua"><img src="./623363217_18128748946522457_8314979202544129601_n.webp" alt="Linguiça parrillera na tábua" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
-    <button class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Mesa com prato e cerveja"><img src="./623306938_18072393749425935_6172586329113670836_n.webp" alt="Mesa com prato e cerveja Patricia" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
-    <button class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Provoleta assada na brasa"><img src="./621568802_18094742743940906_2923069846432133020_n.webp" alt="Provoleta assada na brasa" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
-    <button class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Choripan sendo segurado"><img src="./618685656_18045665750505592_9118647784955186969_n.webp" alt="Choripan sendo segurado" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
-    <button class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Mão aplicando chimichurri na linguiça"><img src="./628282592_18385030918156905_286984248131342000_n.webp" alt="Mão aplicando chimichurri na linguiça" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
-    <button class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Tábua completa com linguiça e bife"><img src="./622616075_18105040825762909_5719537962245207622_n.webp" alt="Tábua completa com linguiça e bife" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
-    <button class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Mesa posta com flores"><img src="./625309028_18051703655676597_7709912284649095396_n.webp" alt="Mesa posta com flores" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
-    <button class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Vista aérea linguiça e choripan"><img src="./629638407_18311871268255192_5816290946313003550_n.webp" alt="Vista aérea linguiça e choripan" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
-    <button class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Choripan com bandeirinha Isla"><img src="./624844148_18076616240362292_2746144443121873358_n.webp" alt="Choripan com bandeirinha Isla" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
-    <button class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Banana a la Parrilla"><img src="./621439431_18104625034742676_1300265294463694011_n.webp" alt="Banana a la Parrilla" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
-    <button class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Morrones con Queso grelhados"><img src="./486546378_18276190915264420_4491854439242210461_n.jpg" alt="Morrones con Queso grelhados" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
-    <button class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Mesa com pratos e guardanapos"><img src="./651756445_18039240512552734_5522718834813415301_n.webp" alt="Mesa com pratos e guardanapos" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
-    <button class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Cortes na grelha com brasas"><img src="./486724612_18276191056264420_1456871924032622789_n.jpg" alt="Cortes na grelha com brasas" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
-    <button class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Bife sendo cortado"><img src="./504219405_720355537047332_1369030571892027789_n.jpg" alt="Bife sendo cortado" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
-    <button class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Parrillera Especial"><img src="./529858240_18291264826264420_5285779803479373116_n.jpg" alt="Parrillera Especial" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
+    <button type="button" class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Garçom servindo pratos na Isla Parrilla"><img src="./625237102_18190396015352231_1366551529467995196_n.webp" alt="Garçom servindo pratos na Isla Parrilla" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
+    <button type="button" class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Linguiça parrillera na tábua"><img src="./623363217_18128748946522457_8314979202544129601_n.webp" alt="Linguiça parrillera na tábua" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
+    <button type="button" class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Mesa com prato e cerveja"><img src="./623306938_18072393749425935_6172586329113670836_n.webp" alt="Mesa com prato e cerveja Patricia" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
+    <button type="button" class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Provoleta assada na brasa"><img src="./621568802_18094742743940906_2923069846432133020_n.webp" alt="Provoleta assada na brasa" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
+    <button type="button" class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Choripan sendo segurado"><img src="./618685656_18045665750505592_9118647784955186969_n.webp" alt="Choripan sendo segurado" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
+    <button type="button" class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Mão aplicando chimichurri na linguiça"><img src="./628282592_18385030918156905_286984248131342000_n.webp" alt="Mão aplicando chimichurri na linguiça" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
+    <button type="button" class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Tábua completa com linguiça e bife"><img src="./622616075_18105040825762909_5719537962245207622_n.webp" alt="Tábua completa com linguiça e bife" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
+    <button type="button" class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Mesa posta com flores"><img src="./625309028_18051703655676597_7709912284649095396_n.webp" alt="Mesa posta com flores" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
+    <button type="button" class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Vista aérea linguiça e choripan"><img src="./629638407_18311871268255192_5816290946313003550_n.webp" alt="Vista aérea linguiça e choripan" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
+    <button type="button" class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Choripan com bandeirinha Isla"><img src="./624844148_18076616240362292_2746144443121873358_n.webp" alt="Choripan com bandeirinha Isla" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
+    <button type="button" class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Banana a la Parrilla"><img src="./621439431_18104625034742676_1300265294463694011_n.webp" alt="Banana a la Parrilla" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
+    <button type="button" class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Morrones con Queso grelhados"><img src="./486546378_18276190915264420_4491854439242210461_n.jpg" alt="Morrones con Queso grelhados" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
+    <button type="button" class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Mesa com pratos e guardanapos"><img src="./651756445_18039240512552734_5522718834813415301_n.webp" alt="Mesa com pratos e guardanapos" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
+    <button type="button" class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Cortes na grelha com brasas"><img src="./486724612_18276191056264420_1456871924032622789_n.jpg" alt="Cortes na grelha com brasas" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
+    <button type="button" class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Bife sendo cortado"><img src="./504219405_720355537047332_1369030571892027789_n.jpg" alt="Bife sendo cortado" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
+    <button type="button" class="gitem" onclick="openLB(this)" aria-label="Ver foto ampliada: Parrillera Especial"><img src="./529858240_18291264826264420_5285779803479373116_n.jpg" alt="Parrillera Especial" loading="lazy"/><div class="gov" aria-hidden="true"><span>+</span></div></button>
   </div>
 </section>
 
 <!-- LIGHTBOX -->
 <div id="lbx" role="dialog" aria-modal="true" aria-label="Visualizar imagem ampliada" onclick="closeLB()">
   <img id="lbi" src="" alt=""/>
-  <button id="lbxc" aria-label="Fechar imagem">×</button>
+  <button type="button" id="lbxc" aria-label="Fechar imagem">×</button>
 </div>
 
 <!-- DEPOIMENTOS -->
@@ -920,7 +922,13 @@ const prefersRM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 // ── COOKIE CONSENT (LGPD) ──
 function checkCookieConsent(){
   const v = localStorage.getItem('isla_cookie');
-  if(!v) setTimeout(()=>document.getElementById('ck').classList.add('show'), 1800);
+  if(!v) setTimeout(()=>{
+    const ck=document.getElementById('ck');
+    ck.classList.add('show');
+    // Move focus to cookie banner for keyboard users
+    const btn=ck.querySelector('button');
+    if(btn) btn.focus();
+  }, 1800);
 }
 function acceptCookies(){
   localStorage.setItem('isla_cookie','accepted');
@@ -1040,11 +1048,18 @@ function closeMM(){
   document.body.style.overflow='';
   hamburger.focus();
 }
-// Close mobile menu on Escape
+// Keyboard handling: Escape + focus trap for mobile menu and lightbox
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){
     if(mobileMenu.classList.contains('open')) closeMM();
     if(document.getElementById('lbx').classList.contains('open')) closeLB();
+  }
+  // Focus trap for mobile menu
+  if(e.key==='Tab' && mobileMenu.classList.contains('open')){
+    const focusable=Array.from(mobileMenu.querySelectorAll('a,button'));
+    const first=focusable[0],last=focusable[focusable.length-1];
+    if(e.shiftKey){if(document.activeElement===first){e.preventDefault();last.focus();}}
+    else{if(document.activeElement===last){e.preventDefault();first.focus();}}
   }
 });
 
@@ -1215,8 +1230,8 @@ function validateRsv(){
       "@id":"https://isla-parrilla.vercel.app/#restaurant",
       "name":"Isla Parrilla",
       "url":"https://isla-parrilla.vercel.app/",
-      "logo":"https://isla-parrilla.vercel.app/foto da parrilla.webp",
-      "image":"https://isla-parrilla.vercel.app/foto da parrilla.webp",
+      "logo":"https://isla-parrilla.vercel.app/foto%20da%20parrilla.webp",
+      "image":"https://isla-parrilla.vercel.app/foto%20da%20parrilla.webp",
       "description":"Restaurante especializado em Parrilla Argentina com cortes Angus nobres grelhados na brasa. Campeche, Florianópolis SC.",
       "address":{
         "@type":"PostalAddress",
@@ -1228,7 +1243,6 @@ function validateRsv(){
       },
       "geo":{"@type":"GeoCoordinates","latitude":"-27.6757","longitude":"-48.4936"},
       "telephone":"+5548991256740",
-      "email":"contato@islaparrilla.com.br",
       "sameAs":["https://www.instagram.com/islaparrilla"],
       "servesCuisine":["Argentine","Steakhouse","Parrilla","Brazilian"],
       "hasMenu":"https://isla-parrilla.vercel.app/#cardapio",
